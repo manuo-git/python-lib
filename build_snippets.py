@@ -7,14 +7,19 @@ def generate_snippets():
     base_dir = Path(__file__).parent
     src_dir = base_dir / "src"
     
-    # 🌟 VSCodeのユーザー設定フォルダへ直接書き出す設定
-    # Windows側のVSCodeをWSLから使う場合の一般的なパス（ユーザー名はご自身の環境に合わせてください）
-    # ※ もし動かない場合は、通常通りリポジトリ内に吐き出す設定（output_dir = base_dir / "snippets"）にしてください。
-    output_dir = Path(f"C:/Users/saintmanuo/AppData/Roaming/Code/User/snippets")
-    print(output_dir)
+    # 🌟 config.json からパスを読み込む
+    config_file = base_dir / "config.json"
+    output_dir = None
+    
+    if config_file.exists():
+        with open(config_file, "r", encoding="utf-8") as cf:
+            config = json.load(cf)
+            # JSONからパスを取得して Path オブジェクトに変換
+            if "vscode_snippets_dir" in config:
+                output_dir = Path(config["vscode_snippets_dir"])
 
-    if not output_dir.exists():
-        # フォールバック: VSCodeフォルダが見つからない場合はリポジトリ内に保存
+    if not output_dir or not output_dir.exists():
+        print("Warning: config.json が見つからないか、パスが無効です。リポジトリ内に保存します。")
         output_dir = base_dir / "snippets"
         output_dir.mkdir(exist_ok=True)
         
