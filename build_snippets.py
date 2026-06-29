@@ -10,9 +10,9 @@ def generate_snippets():
     # 🌟 VSCodeのユーザー設定フォルダへ直接書き出す設定
     # Windows側のVSCodeをWSLから使う場合の一般的なパス（ユーザー名はご自身の環境に合わせてください）
     # ※ もし動かない場合は、通常通りリポジトリ内に吐き出す設定（output_dir = base_dir / "snippets"）にしてください。
-    win_user = os.environ.get("USER", "default")
-    output_dir = Path(f"/mnt/c/Users/{win_user}/AppData/Roaming/Code/User/snippets")
-    
+    output_dir = Path(f"C:/Users/saintmanuo/AppData/Roaming/Code/User/snippets")
+    print(output_dir)
+
     if not output_dir.exists():
         # フォールバック: VSCodeフォルダが見つからない場合はリポジトリ内に保存
         output_dir = base_dir / "snippets"
