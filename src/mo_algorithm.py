@@ -24,15 +24,21 @@ class MoSolver:
         for l, r, idx in self.qs:
             while cur_l > l: # [l, r) -> [l-1, r)
                 cur_l -= 1
-                add_left(cur_l)
+                add_left(cur_l, cur_l, cur_r)
             while cur_r < r: # [l, r) -> [l, r+1)
-                add_right(cur_r)
+                add_right(cur_r, cur_l, cur_r+1)
                 cur_r += 1
             while cur_l < l: # [l, r) -> [l+1, r)
-                erase_left(cur_l)
+                erase_left(cur_l, cur_l, cur_r)
                 cur_l += 1
             while cur_r > r: # [l, r) -> [l, r-1)
                 cur_r -= 1
-                erase_right(cur_r)
-            ans[idx] = answer(idx)
+                erase_right(cur_r, cur_l, cur_r+1)
+            ans[idx] = answer(idx, cur_l, cur_r)
         return ans
+    
+# def add_left(i, cur_l, cur_r):
+# def add_right(i, cur_l, cur_r):
+# def erase_left(i, cur_l, cur_r):
+# def erase_right(i, cur_l, cur_r):
+# def answer(i, cur_l, cur_r):
