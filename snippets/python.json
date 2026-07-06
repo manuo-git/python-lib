@@ -1,7 +1,9 @@
 {
     "Aho-Corasick": {
         "description": "[aho_corasick.py] 競プロライブラリ: Aho-Corasick",
-        "prefix": ["aho corasick"],
+        "prefix": [
+            "aho corasick"
+        ],
         "body": [
             "# https://atcoder.jp/contests/abc419/editorial/13623",
             "class AhoCorasick:",
@@ -49,7 +51,9 @@
     },
     "Area of Union of Rectangles": {
         "description": "[area_of_union_of_rectangles.py] 競プロライブラリ: Area of Union of Rectangles",
-        "prefix": ["area of union of rectangles"],
+        "prefix": [
+            "area of union of rectangles"
+        ],
         "body": [
             "# https://atcoder.jp/contests/abc449/submissions/74125516",
             "class UnionOfLines:",
@@ -164,7 +168,9 @@
     },
     "Arg Sort": {
         "description": "[arg_sort.py] 競プロライブラリ: Arg Sort",
-        "prefix": ["argsort"],
+        "prefix": [
+            "argsort"
+        ],
         "body": [
             "from typing import *",
             "def sort(data: List[Any], cmp):",
@@ -235,7 +241,9 @@
     },
     "Bellman-Ford": {
         "description": "[bellman_ford.py] 競プロライブラリ: Bellman-Ford",
-        "prefix": ["bellmanford"],
+        "prefix": [
+            "bellmanford"
+        ],
         "body": [
             "class BellmanFord:",
             "    INF = 1 << 60",
@@ -312,7 +320,9 @@
     },
     "Binary Trie": {
         "description": "[binary_trie.py] 競プロライブラリ: Binary Trie",
-        "prefix": ["binary trie"],
+        "prefix": [
+            "binary trie"
+        ],
         "body": [
             "class BinaryTrie:",
             "    NODES = 16777216 # 480MB memory",
@@ -444,7 +454,9 @@
     },
     "Bit Subset": {
         "description": "[bit_subset.py] 競プロライブラリ: Bit Subset",
-        "prefix": ["subsetbit"],
+        "prefix": [
+            "subsetbit"
+        ],
         "body": [
             "class subset:",
             "    def __init__(self, bi):",
@@ -461,7 +473,9 @@
     },
     "Bridge Check": {
         "description": "[bridge_check.py] 競プロライブラリ: Bridge Check",
-        "prefix": ["bridge check"],
+        "prefix": [
+            "bridge check"
+        ],
         "body": [
             "def find_bridges(n, edges):",
             "    \"\"\"",
@@ -503,7 +517,9 @@
     },
     "Bucket List": {
         "description": "[bucket_list.py] 競プロライブラリ: Bucket List",
-        "prefix": ["bucketlist"],
+        "prefix": [
+            "bucketlist"
+        ],
         "body": [
             "# https://github.com/tatyam-prime/SortedSet/blob/main/BucketList.py",
             "import math",
@@ -630,7 +646,9 @@
     },
     "Centroids": {
         "description": "[centroids.py] 競プロライブラリ: Centroids",
-        "prefix": ["centroids"],
+        "prefix": [
+            "centroids"
+        ],
         "body": [
             "def get_centroids(N: int, edge: list[list[int]]) -> list[int]:",
             "    \"\"\"木の重心を求める (O(N))",
@@ -669,7 +687,9 @@
     },
     "Cmp to Key": {
         "description": "[cmp_to_key.py] 競プロライブラリ: Cmp to Key",
-        "prefix": ["cmp to key"],
+        "prefix": [
+            "cmp to key"
+        ],
         "body": [
             "from typing import *",
             "def sort(data: list[Any], cmp):",
@@ -705,7 +725,9 @@
     },
     "Combination": {
         "description": "[comb.py] 競プロライブラリ: Combination",
-        "prefix": ["comb"],
+        "prefix": [
+            "comb"
+        ],
         "body": [
             "# O(NMAX)。MODが素数じゃないときは二次元配列を作ってO(NMAX^2)で求める。",
             "# comb2を参照",
@@ -728,7 +750,9 @@
     },
     "Combination2": {
         "description": "[comb2.py] 競プロライブラリ: Combination2",
-        "prefix": ["comb2"],
+        "prefix": [
+            "comb2"
+        ],
         "body": [
             "# O(NMAX^2)",
             "NMAX = $1",
@@ -745,7 +769,9 @@
     },
     "Convex Hull": {
         "description": "[convex_hull.py] 競プロライブラリ: Convex Hull",
-        "prefix": ["convexhull"],
+        "prefix": [
+            "convexhull"
+        ],
         "body": [
             "# https://atcoder.jp/contests/awc0103/editorial/22410",
             "def sub(p1, p2):",
@@ -787,7 +813,9 @@
     },
     "Convolution998": {
         "description": "[convolution.py] 競プロライブラリ: Convolution998",
-        "prefix": ["convolution"],
+        "prefix": [
+            "convolution"
+        ],
         "body": [
             "# https://judge.yosupo.jp/submission/55648",
             "# AtCoder Libary v1.4 を python に移植したもの",
@@ -911,7 +939,9 @@
     },
     "Cum 2D": {
         "description": "[cum_2d.py] 競プロライブラリ: Cum 2D",
-        "prefix": ["cum2d"],
+        "prefix": [
+            "cum2d"
+        ],
         "body": [
             "class cum2D:",
             "    def __init__(self, grid):",
@@ -929,7 +959,9 @@
     },
     "Cum KD": {
         "description": "[cum_kd.py] 競プロライブラリ: Cum KD",
-        "prefix": ["cumkd"],
+        "prefix": [
+            "cumkd"
+        ],
         "body": [
             "class cumKD:",
             "    def __init__(self, k: int, *lim):",
@@ -1039,26 +1071,36 @@
     },
     "Dir4": {
         "description": "[dir4.py] 競プロライブラリ: Dir4",
-        "prefix": ["dir4"],
-        "body": ["dir = [(0, 1), (1, 0), (0, -1), (-1, 0)]"]
+        "prefix": [
+            "dir4"
+        ],
+        "body": [
+            "dir = [(0, 1), (1, 0), (0, -1), (-1, 0)]"
+        ]
     },
     "Dir8": {
         "description": "[dir8.py] 競プロライブラリ: Dir8",
-        "prefix": ["dir8"],
+        "prefix": [
+            "dir8"
+        ],
         "body": [
             "dir = [(1, 0), (1, 1), (0, 1), (-1, 1), (-1, 0), (-1, -1), (0, -1), (1, -1)]"
         ]
     },
     "Dir String": {
         "description": "[dirstr.py] 競プロライブラリ: Dir String",
-        "prefix": ["dirstr"],
+        "prefix": [
+            "dirstr"
+        ],
         "body": [
             "dir = {\"U\":(-1, 0), \"D\":(1, 0), \"R\":(0, 1), \"L\":(0, -1)}"
         ]
     },
     "Dist List": {
         "description": "[dist_list.py] 競プロライブラリ: Dist List",
-        "prefix": ["distlist"],
+        "prefix": [
+            "distlist"
+        ],
         "body": [
             "def distlist(st, n, edge):",
             "    q = deque([st])",
@@ -1078,7 +1120,9 @@
     },
     "Divisor": {
         "description": "[divisor.py] 競プロライブラリ: Divisor",
-        "prefix": ["divisor"],
+        "prefix": [
+            "divisor"
+        ],
         "body": [
             "def div(num):",
             "    ret = []",
@@ -1094,7 +1138,9 @@
     },
     "Doubling": {
         "description": "[doubling.py] 競プロライブラリ: Doubling",
-        "prefix": ["doubling"],
+        "prefix": [
+            "doubling"
+        ],
         "body": [
             "class Doubling:",
             "    def __init__(self, op, e, p, v, log = 60):",
@@ -1143,7 +1189,9 @@
     },
     "Doubling List": {
         "description": "[doubling_list.py] 競プロライブラリ: Doubling List",
-        "prefix": ["doubling list"],
+        "prefix": [
+            "doubling list"
+        ],
         "body": [
             "# B_i <- A_x_i",
             "def f(x, p): # O(NlogP) 使いまわすなら真面目に",
@@ -1159,7 +1207,9 @@
     },
     "Edge DSU": {
         "description": "[edsu.py] 競プロライブラリ: Edge DSU",
-        "prefix": ["edsu"],
+        "prefix": [
+            "edsu"
+        ],
         "body": [
             "from atcoder.dsu import DSU",
             "class EDSU(DSU):",
@@ -1187,7 +1237,9 @@
     },
     "Extended GCD": {
         "description": "[extgcd.py] 競プロライブラリ: Extended GCD",
-        "prefix": ["extgcd"],
+        "prefix": [
+            "extgcd"
+        ],
         "body": [
             "def extgcd(a, b) -> tuple[int, int]:",
             "    if b == 0: return 1, 0",
@@ -1198,7 +1250,9 @@
     },
     "Factor": {
         "description": "[factor.py] 競プロライブラリ: Factor",
-        "prefix": ["factor"],
+        "prefix": [
+            "factor"
+        ],
         "body": [
             "FACMAX = $1",
             "FAC = [0]*(FACMAX+1)",
@@ -1239,7 +1293,9 @@
     },
     "Factor Big": {
         "description": "[factor_big.py] 競プロライブラリ: Factor Big",
-        "prefix": ["factor big"],
+        "prefix": [
+            "factor big"
+        ],
         "body": [
             "# [(x1, c1), (x2, c2) ... (xk, ck)]",
             "# X = x1^c1 * x2^c2 * ... * xk^ck",
@@ -1266,7 +1322,9 @@
     },
     "Fenwick Tree MOD": {
         "description": "[fenwick_tree_mod.py] 競プロライブラリ: Fenwick Tree MOD",
-        "prefix": ["fenwicktreemod"],
+        "prefix": [
+            "fenwicktreemod"
+        ],
         "body": [
             "class FenwickTreeMOD(FenwickTree):",
             "    mod: int",
@@ -1297,7 +1355,9 @@
     },
     "Floor Sum": {
         "description": "[floor_sum.py] 競プロライブラリ: Floor Sum",
-        "prefix": ["floorsum"],
+        "prefix": [
+            "floorsum"
+        ],
         "body": [
             "# https://atcoder.jp/contests/abc443/editorial/15138",
             "def floor_sum(n, m, a, b):",
@@ -1311,7 +1371,9 @@
     },
     "Floyd-Warshall": {
         "description": "[floyd_warshall.py] 競プロライブラリ: Floyd-Warshall",
-        "prefix": ["floydwarshall"],
+        "prefix": [
+            "floydwarshall"
+        ],
         "body": [
             "class FloydWarshall:",
             "    INF = 1<<60",
@@ -1387,7 +1449,9 @@
     },
     "Functional Graph": {
         "description": "[functional_graph.py] 競プロライブラリ: Functional Graph",
-        "prefix": ["functionalgraph"],
+        "prefix": [
+            "functionalgraph"
+        ],
         "body": [
             "class FunctionalGraph:",
             "    _n: int",
@@ -1479,7 +1543,9 @@
     },
     "Graph": {
         "description": "[graph.py] 競プロライブラリ: Graph",
-        "prefix": ["graph"],
+        "prefix": [
+            "graph"
+        ],
         "body": [
             "from heapq import heappop, heappush",
             "from collections import deque",
@@ -1653,7 +1719,9 @@
     },
     "Grid Flip": {
         "description": "[grid_flip.py] 競プロライブラリ: Grid Flip",
-        "prefix": ["flip"],
+        "prefix": [
+            "flip"
+        ],
         "body": [
             "def flip(G):",
             "    h, w = len(G), len(G[0])",
@@ -1666,7 +1734,9 @@
     },
     "Grid Left Up": {
         "description": "[grid_leftup.py] 競プロライブラリ: Grid Left Up",
-        "prefix": ["leftup"],
+        "prefix": [
+            "leftup"
+        ],
         "body": [
             "def leftup(G, white = \".\"):",
             "    h, w = len(G), len(G[0])",
@@ -1685,7 +1755,9 @@
     },
     "Grid Rotate": {
         "description": "[grid_rotate.py] 競プロライブラリ: Grid Rotate",
-        "prefix": ["rotate"],
+        "prefix": [
+            "rotate"
+        ],
         "body": [
             "def rotate(G, left = True):",
             "    # 反時計周り",
@@ -1707,7 +1779,9 @@
     },
     "HLD": {
         "description": "[hld.py] 競プロライブラリ: HLD",
-        "prefix": ["hld"],
+        "prefix": [
+            "hld"
+        ],
         "body": [
             "class HLD:",
             "    N: int",
@@ -2352,12 +2426,19 @@
     },
     "Horizontal Line": {
         "description": "[horizontal_line.py] 競プロライブラリ: Horizontal Line",
-        "prefix": ["sen", "line"],
-        "body": ["print(\"--------------\")"]
+        "prefix": [
+            "sen",
+            "line"
+        ],
+        "body": [
+            "print(\"--------------\")"
+        ]
     },
     "Imos 2D": {
         "description": "[imos_2d.py] 競プロライブラリ: Imos 2D",
-        "prefix": ["imos2d"],
+        "prefix": [
+            "imos2d"
+        ],
         "body": [
             "class imos2D:",
             "    def __init__(self, n, m):",
@@ -2391,27 +2472,45 @@
     },
     "AtCoder Import Convolution": {
         "description": "[import_atcoder_convolution.py] 競プロライブラリ: AtCoder Import Convolution",
-        "prefix": ["atcconvolution"],
-        "body": ["from acl_cpp.convolution import convolution998244353"]
+        "prefix": [
+            "atcconvolution"
+        ],
+        "body": [
+            "from acl_cpp.convolution import convolution998244353"
+        ]
     },
     "AtCoder Import DSU": {
         "description": "[import_atcoder_dsu.py] 競プロライブラリ: AtCoder Import DSU",
-        "prefix": ["atcdsu"],
-        "body": ["from atcoder.dsu import DSU"]
+        "prefix": [
+            "atcdsu"
+        ],
+        "body": [
+            "from atcoder.dsu import DSU"
+        ]
     },
     "AtCoder Import FenwickTree": {
         "description": "[import_atcoder_fenwicktree.py] 競プロライブラリ: AtCoder Import FenwickTree",
-        "prefix": ["atcfenwicktree"],
-        "body": ["from atcoder.fenwicktree import FenwickTree"]
+        "prefix": [
+            "atcfenwicktree"
+        ],
+        "body": [
+            "from atcoder.fenwicktree import FenwickTree"
+        ]
     },
     "AtCoder Import LazySegTree": {
         "description": "[import_atcoder_lazysegtree.py] 競プロライブラリ: AtCoder Import LazySegTree",
-        "prefix": ["atclazysegtree"],
-        "body": ["from atcoder.lazysegtree import LazySegTree"]
+        "prefix": [
+            "atclazysegtree"
+        ],
+        "body": [
+            "from atcoder.lazysegtree import LazySegTree"
+        ]
     },
     "AtCoder Import MaxFlow": {
         "description": "[import_atcoder_maxflow.py] 競プロライブラリ: AtCoder Import MaxFlow",
-        "prefix": ["atcmaxflow"],
+        "prefix": [
+            "atcmaxflow"
+        ],
         "body": [
             "# 提出はCPythonで",
             "from acl_cpp.maxflow import mf_graph as MFGraph"
@@ -2419,7 +2518,9 @@
     },
     "AtCoder Import MinCostFlow": {
         "description": "[import_atcoder_mincostflow.py] 競プロライブラリ: AtCoder Import MinCostFlow",
-        "prefix": ["atcmincostflow"],
+        "prefix": [
+            "atcmincostflow"
+        ],
         "body": [
             "# 提出はCPythonで",
             "from acl_cpp.mincostflow import mcf_graph as MCFGraph"
@@ -2427,24 +2528,36 @@
     },
     "AtCoder Import SegTree": {
         "description": "[import_atcoder_segtree.py] 競プロライブラリ: AtCoder Import SegTree",
-        "prefix": ["atcsegtree"],
-        "body": ["from atcoder.segtree import SegTree"]
+        "prefix": [
+            "atcsegtree"
+        ],
+        "body": [
+            "from atcoder.segtree import SegTree"
+        ]
     },
     "AtCoder Import String": {
         "description": "[import_atcoder_string.py] 競プロライブラリ: AtCoder Import String",
-        "prefix": ["atcstring"],
+        "prefix": [
+            "atcstring"
+        ],
         "body": [
             "from atcoder.string import suffix_array, z_algorithm, lcp_array"
         ]
     },
     "Int Input": {
         "description": "[int_input.py] 競プロライブラリ: Int Input",
-        "prefix": ["intinput"],
-        "body": ["int(input())"]
+        "prefix": [
+            "intinput"
+        ],
+        "body": [
+            "int(input())"
+        ]
     },
     "LCA": {
         "description": "[lca.py] 競プロライブラリ: LCA",
-        "prefix": ["lca"],
+        "prefix": [
+            "lca"
+        ],
         "body": [
             "from typing import List, Tuple",
             "class LCA:",
@@ -2715,9 +2828,136 @@
             "        return self.depth[u] + self.depth[v] - 2 * self.depth[lca]"
         ]
     },
+    "LCA O(1)": {
+        "description": "[lca_fast.py] 競プロライブラリ: LCA O(1)",
+        "prefix": [
+            "lca_fast"
+        ],
+        "body": [
+            "class SparseTable: # 中身はDisjointSparseTable。セグ木に乗るものなら何でも乗る。",
+            "    def __init__(self, op, e, v):",
+            "        self.n = len(v)",
+            "        self.op = op",
+            "        self.e = e",
+            "        self.log = 1 if self.n <= 1 else (self.n - 1).bit_length()",
+            "        ",
+            "        self.data = [e] * (self.log * self.n)",
+            "        for k in range(self.log):",
+            "            offset = k * self.n",
+            "            mid_step = 1 << k",
+            "            for mid in range(mid_step, self.n + mid_step, mid_step*2):",
+            "                if mid <= self.n:",
+            "                    res = v[mid-1]",
+            "                    self.data[offset+mid-1] = res",
+            "                    for i in range(mid-2, max(-1, mid-mid_step-1), -1):",
+            "                        res = self.op(v[i], res)",
+            "                        self.data[offset+i] = res",
+            "                ",
+            "                if mid < self.n:",
+            "                    res = v[mid]",
+            "                    self.data[offset+mid] = res",
+            "                    for i in range(mid+1, min(self.n, mid+mid_step)):",
+            "                        res = self.op(res, v[i])",
+            "                        self.data[offset+i] = res",
+            "",
+            "    def prod(self, l: int, r: int):",
+            "        if l == r: return self.e",
+            "        r -= 1",
+            "        if l == r: return self.data[l]",
+            "        k = (l ^ r).bit_length() - 1",
+            "        offset = k * self.n",
+            "        return self.op(self.data[offset+l], self.data[offset+r])",
+            "    ",
+            "    def max_right(self, left: int, f):",
+            "        l, r = left, self.n+1",
+            "        while r-l>1:",
+            "            m = (l+r)//2",
+            "            if f(self.prod(left, m)): l = m",
+            "            else: r = m",
+            "        return l",
+            "    ",
+            "    def min_left(self, right: int, f):",
+            "        l, r = -1, right",
+            "        while r-l>1:",
+            "            m = (l+r)//2",
+            "            if f(self.prod(m, right)): r = m",
+            "            else: l = m",
+            "        return r",
+            "",
+            "class LCA:",
+            "    def __init__(self, n: int):",
+            "        self.n = n",
+            "        self.log = (n-1).bit_length()",
+            "        self.edges = [[] for _ in range(self.n)]",
+            "    ",
+            "    def add_edge(self, u: int, v: int, w: int = 1):",
+            "        assert 0 <= u < self.n",
+            "        assert 0 <= v < self.n",
+            "        self.edges[u].append((v, w))",
+            "        self.edges[v].append((u, w))",
+            "",
+            "    def build(self, root: int = 0):",
+            "        self.mask = (1<<self.log)-1",
+            "        self.depth = [0]*self.n",
+            "        self.depth_dist = [0]*self.n",
+            "        li = []",
+            "        self.first = [-1]*self.n",
+            "        self.m = 2*self.n-1",
+            "        dat = [0]*self.m",
+            "        q = [(-1, root, 0, 0)]",
+            "        d = -1",
+            "        dist = 0",
+            "        idx = 0",
+            "        while q:",
+            "            p, i, t, w = q.pop()",
+            "            li.append(i)",
+            "            if t == 0:",
+            "                d += 1",
+            "                dist += w",
+            "                self.depth[i] = d",
+            "                self.depth_dist[i] = dist",
+            "                self.first[i] = idx",
+            "                for j, w in self.edges[i]:",
+            "                    if j == p: continue",
+            "                    q.append((-1, i, 1, w))",
+            "                    q.append((i, j, 0, w))",
+            "            else:",
+            "                d -= 1",
+            "                dist -= w",
+            "            dat[idx] = self._code(d, i)",
+            "            idx += 1",
+            "        self.table = SparseTable(lambda a,b: min(a,b), self._code(1<<self.log+1, 0), dat)",
+            "    ",
+            "    def _code(self, x, i): return x<<self.log | i",
+            "    def _decode(self, e): return e>>self.log, e&self.mask",
+            "",
+            "    def _prod(self, u, v):",
+            "        l, r = self.first[u], self.first[v]",
+            "        if l > r: l, r = r, l",
+            "        return self.table.prod(l, r+1)",
+            "",
+            "    def _lca_depth(self, u, v):",
+            "        return self._decode(self._prod(u, v))[0]",
+            "    ",
+            "    def _lca_depth_dist(self, u, v):",
+            "        lca = self._decode(self._prod(u, v))[1]",
+            "        return self.depth_dist[lca]",
+            "    ",
+            "    def lca(self, u, v):",
+            "        return self._decode(self._prod(u, v))[1]",
+            "    ",
+            "    def edge_count(self, u, v):",
+            "        return self.depth[u]+self.depth[v] - 2*self._lca_depth(u, v)",
+            "    ",
+            "    def dist(self, u, v):",
+            "        return self.depth_dist[u]+self.depth_dist[v] - 2*self._lca_depth_dist(u, v)"
+        ]
+    },
     "Line Segments": {
         "description": "[line_segment.py] 競プロライブラリ: Line Segments",
-        "prefix": ["linesegment"],
+        "prefix": [
+            "linesegment"
+        ],
         "body": [
             "def calcline(x1, y1, x2, y2):",
             "    p = x1-x2",
@@ -2738,22 +2978,38 @@
     },
     "List Map Input": {
         "description": "[list_map_input.py] 競プロライブラリ: List Map Input",
-        "prefix": ["listmapinput"],
-        "body": ["list(map(int, input().split()))"]
+        "prefix": [
+            "listmapinput"
+        ],
+        "body": [
+            "list(map(int, input().split()))"
+        ]
     },
     "List Map Input Usize1": {
         "description": "[list_map_input_usize1.py] 競プロライブラリ: List Map Input Usize1",
-        "prefix": ["listmapinput_"],
-        "body": ["list(map(_int, input().split()))"]
+        "prefix": [
+            "listmapinput_"
+        ],
+        "body": [
+            "list(map(_int, input().split()))"
+        ]
     },
     "Local Code": {
         "description": "[local_code.py] 競プロライブラリ: Local Code",
-        "prefix": ["localcode", "myjudge"],
-        "body": ["if sys.argv[-1] == \"MY_JUDGE\":", "    $0"]
+        "prefix": [
+            "localcode",
+            "myjudge"
+        ],
+        "body": [
+            "if sys.argv[-1] == \"MY_JUDGE\":",
+            "    $0"
+        ]
     },
     "Lucy DP": {
         "description": "[lucydp.py] 競プロライブラリ: Lucy DP",
-        "prefix": ["lucydp"],
+        "prefix": [
+            "lucydp"
+        ],
         "body": [
             "# https://qiita.com/masa0599/items/2704047579eaafb2a322",
             "# N以下の素数の数を数える",
@@ -2773,7 +3029,9 @@
     },
     "Macro": {
         "description": "[macro.py] 競プロライブラリ: Macro",
-        "prefix": ["mac"],
+        "prefix": [
+            "mac"
+        ],
         "body": [
             "from collections import deque, defaultdict, Counter",
             "from bisect import bisect_left, bisect_right",
@@ -2793,7 +3051,9 @@
     },
     "Codon Macro": {
         "description": "[macro_codon.py] 競プロライブラリ: Codon Macro",
-        "prefix": ["macro_codon"],
+        "prefix": [
+            "macro_codon"
+        ],
         "body": [
             "from collections import deque, defaultdict, Counter",
             "from bisect import bisect_left, bisect_right",
@@ -2923,7 +3183,9 @@
     },
     "Interactive Macro": {
         "description": "[macro_interactive.py] 競プロライブラリ: Interactive Macro",
-        "prefix": ["macro_interactive"],
+        "prefix": [
+            "macro_interactive"
+        ],
         "body": [
             "from collections import deque, defaultdict, Counter",
             "from bisect import bisect_left, bisect_right",
@@ -2996,17 +3258,27 @@
     },
     "Map Input": {
         "description": "[map_input.py] 競プロライブラリ: Map Input",
-        "prefix": ["mapinput"],
-        "body": ["map(int, input().split())"]
+        "prefix": [
+            "mapinput"
+        ],
+        "body": [
+            "map(int, input().split())"
+        ]
     },
     "Map Input Usize1": {
         "description": "[map_input_usize1.py] 競プロライブラリ: Map Input Usize1",
-        "prefix": ["mapinput_"],
-        "body": ["map(_int, input().split())"]
+        "prefix": [
+            "mapinput_"
+        ],
+        "body": [
+            "map(_int, input().split())"
+        ]
     },
     "Matrix Pow": {
         "description": "[matrix_pow.py] 競プロライブラリ: Matrix Pow",
-        "prefix": ["matrixpow"],
+        "prefix": [
+            "matrixpow"
+        ],
         "body": [
             "class MatrixPow:",
             "    def __init__(self, add, zero, mul, one, mat):",
@@ -3072,7 +3344,9 @@
     },
     "Max Sparse Table 2D": {
         "description": "[max_sparse_table_2d.py] 競プロライブラリ: Max Sparse Table 2D",
-        "prefix": ["sparsetable2dmax"],
+        "prefix": [
+            "sparsetable2dmax"
+        ],
         "body": [
             "class MaxDisjointSparseTable2D:",
             "    def __init__(self, A: list[list[int]]):",
@@ -3175,7 +3449,9 @@
     },
     "Merge Sort Tree": {
         "description": "[merge_sort_tree.py] 競プロライブラリ: Merge Sort Tree",
-        "prefix": ["mergesorttree"],
+        "prefix": [
+            "mergesorttree"
+        ],
         "body": [
             "from bisect import bisect_right, bisect_left",
             "from itertools import accumulate",
@@ -3279,7 +3555,9 @@
     },
     "Min Sparse Table 2D": {
         "description": "[min_sparse_table_2d.py] 競プロライブラリ: Min Sparse Table 2D",
-        "prefix": ["sparsetable2dmin"],
+        "prefix": [
+            "sparsetable2dmin"
+        ],
         "body": [
             "class MinDisjointSparseTable2D:",
             "    def __init__(self, A: list[list[int]]):",
@@ -3382,7 +3660,9 @@
     },
     "Mo's Algorithm": {
         "description": "[mo_algorithm.py] 競プロライブラリ: Mo's Algorithm",
-        "prefix": ["mo"],
+        "prefix": [
+            "mo"
+        ],
         "body": [
             "class MoSolver:",
             "    n: int",
@@ -3429,7 +3709,9 @@
     },
     "Next Permutations": {
         "description": "[next_permutations.py] 競プロライブラリ: Next Permutations",
-        "prefix": ["nextpermutations"],
+        "prefix": [
+            "nextpermutations"
+        ],
         "body": [
             "def next_permutations(li):",
             "    n = len(li)",
@@ -3452,7 +3734,9 @@
     },
     "Potential DSU": {
         "description": "[pdsu.py] 競プロライブラリ: Potential DSU",
-        "prefix": ["pdsu"],
+        "prefix": [
+            "pdsu"
+        ],
         "body": [
             "from typing import *",
             "from atcoder.dsu import DSU",
@@ -3530,7 +3814,9 @@
     },
     "Persistant LazySegTree": {
         "description": "[persistant_lazysegtree.py] 競プロライブラリ: Persistant LazySegTree",
-        "prefix": ["persistant lazysegtree"],
+        "prefix": [
+            "persistant lazysegtree"
+        ],
         "body": [
             "class Node[T, F]:",
             "    l: Node[T, F]",
@@ -3797,7 +4083,9 @@
     },
     "Persistant SegTree": {
         "description": "[persistant_segtree.py] 競プロライブラリ: Persistant SegTree",
-        "prefix": ["persistant segtree"],
+        "prefix": [
+            "persistant segtree"
+        ],
         "body": [
             "class Node[T]:",
             "    l: Node[T]",
@@ -3989,12 +4277,18 @@
     },
     "Position NG": {
         "description": "[posng.py] 競プロライブラリ: Position NG",
-        "prefix": ["posng"],
-        "body": ["if ni < 0 or H <= ni or nj < 0 or W <= nj: continue"]
+        "prefix": [
+            "posng"
+        ],
+        "body": [
+            "if ni < 0 or H <= ni or nj < 0 or W <= nj: continue"
+        ]
     },
     "Prev Permutations": {
         "description": "[prev_permutations.py] 競プロライブラリ: Prev Permutations",
-        "prefix": ["prevpermutations"],
+        "prefix": [
+            "prevpermutations"
+        ],
         "body": [
             "def prev_permutations(li):",
             "    n = len(li)",
@@ -4017,7 +4311,9 @@
     },
     "Prime": {
         "description": "[prime.py] 競プロライブラリ: Prime",
-        "prefix": ["prime"],
+        "prefix": [
+            "prime"
+        ],
         "body": [
             "def prime(num):",
             "    num = int(num)",
@@ -4035,7 +4331,9 @@
     },
     "Query Input": {
         "description": "[query_input.py] 競プロライブラリ: Query Input",
-        "prefix": ["qinput"],
+        "prefix": [
+            "qinput"
+        ],
         "body": [
             "def ctypes(li, types):",
             "    assert len(li) == len(types)",
@@ -4050,7 +4348,9 @@
     },
     "Range Set": {
         "description": "[range_set.py] 競プロライブラリ: Range Set",
-        "prefix": ["rangeset"],
+        "prefix": [
+            "rangeset"
+        ],
         "body": [
             "# https://github.com/tatyam-prime/SortedSet/blob/main/SortedMultiset.py",
             "import math",
@@ -4356,7 +4656,9 @@
     },
     "Rollback DSU": {
         "description": "[rdsu.py] 競プロライブラリ: Rollback DSU",
-        "prefix": ["rdsu"],
+        "prefix": [
+            "rdsu"
+        ],
         "body": [
             "from atcoder.dsu import DSU",
             "class RollbackDSU(DSU):",
@@ -4407,7 +4709,9 @@
     },
     "Re Rooting DP": {
         "description": "[re_rooting.py] 競プロライブラリ: Re Rooting DP",
-        "prefix": ["rerooting"],
+        "prefix": [
+            "rerooting"
+        ],
         "body": [
             "class ReRooting[T, F, G]:",
             "    _n: int",
@@ -4475,12 +4779,18 @@
     },
     "Run Length Encoding": {
         "description": "[rle.py] 競プロライブラリ: Run Length Encoding",
-        "prefix": ["rle"],
-        "body": ["rle = [(x, len(list(c))) for x, c in groupby()]"]
+        "prefix": [
+            "rle"
+        ],
+        "body": [
+            "rle = [(x, len(list(c))) for x, c in groupby()]"
+        ]
     },
     "Rolling Hash": {
         "description": "[rolling_hash.py] 競プロライブラリ: Rolling Hash",
-        "prefix": ["rollinghash"],
+        "prefix": [
+            "rollinghash"
+        ],
         "body": [
             "class FenwickTreeMOD():",
             "    mod: int",
@@ -4604,7 +4914,10 @@
     },
     "Rollback Potential DSU": {
         "description": "[rpdsu.py] 競プロライブラリ: Rollback Potential DSU",
-        "prefix": ["rpdsu", "prdsu"],
+        "prefix": [
+            "rpdsu",
+            "prdsu"
+        ],
         "body": [
             "from atcoder.dsu import DSU",
             "class RollbackPDSU(DSU):",
@@ -4682,7 +4995,9 @@
     },
     "Saiki": {
         "description": "[saiki.py] 競プロライブラリ: Saiki",
-        "prefix": ["saiki"],
+        "prefix": [
+            "saiki"
+        ],
         "body": [
             "import pypyjit, sys",
             "pypyjit.set_param('max_unroll_recursion=-1')",
@@ -4691,7 +5006,9 @@
     },
     "SCC": {
         "description": "[scc.py] 競プロライブラリ: SCC",
-        "prefix": ["scc"],
+        "prefix": [
+            "scc"
+        ],
         "body": [
             "# edges = [(u1, v1), (u2, v2), ... ,(uM, vM)]",
             "def scc(N,edges):",
@@ -4758,7 +5075,9 @@
     },
     "SegTree 2D": {
         "description": "[segtree_2d.py] 競プロライブラリ: SegTree 2D",
-        "prefix": ["segtree2d"],
+        "prefix": [
+            "segtree2d"
+        ],
         "body": [
             "import math, sys",
             "def gcd(x: int, y: int) -> int:",
@@ -4911,7 +5230,9 @@
     },
     "SegTree Beats": {
         "description": "[segtree_beats.py] 競プロライブラリ: SegTree Beats",
-        "prefix": ["segtreebeats"],
+        "prefix": [
+            "segtreebeats"
+        ],
         "body": [
             "import sys",
             "sys.setrecursionlimit(10**6)",
@@ -5217,7 +5538,9 @@
     },
     "Sorted Multi Set": {
         "description": "[sorted_multi_set.py] 競プロライブラリ: Sorted Multi Set",
-        "prefix": ["sortedmultiset"],
+        "prefix": [
+            "sortedmultiset"
+        ],
         "body": [
             "# https://github.com/tatyam-prime/SortedSet/blob/main/SortedMultiset.py",
             "import math",
@@ -5371,7 +5694,9 @@
     },
     "Sorted Set": {
         "description": "[sorted_set.py] 競プロライブラリ: Sorted Set",
-        "prefix": ["sortedset"],
+        "prefix": [
+            "sortedset"
+        ],
         "body": [
             "# https://github.com/tatyam-prime/SortedSet/blob/main/SortedSet.py",
             "import math",
@@ -5529,7 +5854,9 @@
     },
     "Sparse Table": {
         "description": "[sparse_table.py] 競プロライブラリ: Sparse Table",
-        "prefix": ["sparsetable"],
+        "prefix": [
+            "sparsetable"
+        ],
         "body": [
             "class SparseTable: # 中身はDisjointSparseTable。セグ木に乗るものなら何でも乗る。",
             "    def __init__(self, op, e, v):",
@@ -5584,7 +5911,9 @@
     },
     "Sum of a Floor Sequence": {
         "description": "[sum_floor.py] 競プロライブラリ: Sum of a Floor Sequence",
-        "prefix": ["sum_floor"],
+        "prefix": [
+            "sum_floor"
+        ],
         "body": [
             "# sum(N//b for b in range(1, N+1))",
             "def sum_floor(N, MOD): # O(√N)",
@@ -5610,7 +5939,9 @@
     },
     "Top2": {
         "description": "[top2.py] 競プロライブラリ: Top2",
-        "prefix": ["top2"],
+        "prefix": [
+            "top2"
+        ],
         "body": [
             "from typing import ClassVar",
             "class Top2:",
@@ -5660,7 +5991,9 @@
     },
     "TopK": {
         "description": "[topk.py] 競プロライブラリ: TopK",
-        "prefix": ["topk"],
+        "prefix": [
+            "topk"
+        ],
         "body": [
             "class TopK:",
             "    mx: list[int]",
@@ -5707,7 +6040,9 @@
     },
     "Topological Sort": {
         "description": "[topological_sort.py] 競プロライブラリ: Topological Sort",
-        "prefix": ["topologicalsort"],
+        "prefix": [
+            "topologicalsort"
+        ],
         "body": [
             "def tplgsort(N, E):",
             "    incnt = [0]*N",
@@ -5731,7 +6066,9 @@
     },
     "Sum of a Geometric Sequence": {
         "description": "[tousa.py] 競プロライブラリ: Sum of a Geometric Sequence",
-        "prefix": ["tousa"],
+        "prefix": [
+            "tousa"
+        ],
         "body": [
             "# t: 0 -> tousa_wa(初項, 末項, 項数)",
             "# t: 1 -> tousa_wa(初項, 末項, 公差, 1)",
@@ -5750,7 +6087,9 @@
     },
     "Trie": {
         "description": "[trie.py] 競プロライブラリ: Trie",
-        "prefix": ["trie"],
+        "prefix": [
+            "trie"
+        ],
         "body": [
             "from typing import *",
             "class Trie:",
@@ -5866,7 +6205,9 @@
     },
     "Tuple Input": {
         "description": "[tuple_input.py] 競プロライブラリ: Tuple Input",
-        "prefix": ["tinput"],
+        "prefix": [
+            "tinput"
+        ],
         "body": [
             "def ctypes(li, types):",
             "    assert len(li) == len(types)",
@@ -5878,12 +6219,18 @@
     },
     "Tuple Map Input": {
         "description": "[tuple_map_input.py] 競プロライブラリ: Tuple Map Input",
-        "prefix": ["tuplemapinput"],
-        "body": ["tuple(map(int, input().split()))"]
+        "prefix": [
+            "tuplemapinput"
+        ],
+        "body": [
+            "tuple(map(int, input().split()))"
+        ]
     },
     "Wavelet Matrix": {
         "description": "[wavelet_matrix.py] 競プロライブラリ: Wavelet Matrix",
-        "prefix": ["wavelet matrix"],
+        "prefix": [
+            "wavelet matrix"
+        ],
         "body": [
             "class WaveletMatrix:",
             "    _log: int",
