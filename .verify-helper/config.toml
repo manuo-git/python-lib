@@ -1,2 +1,0 @@
-[languages.python]
-include = [ "^(src|test)/.*\\.py$" ]
