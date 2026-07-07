@@ -4,10 +4,12 @@ on:
     push:
         branches:
             - main
+
 permissions:
     contents: write
     pages: write
     id-token: write
+
 jobs:
     deploy:
         runs-on: ubuntu-latest
@@ -16,19 +18,13 @@ jobs:
               with:
                   fetch-depth: 0
 
-            - name: Set up Python
-              uses: actions/setup-python@v5
-              with:
-                  python-version: "3.11"
-
-            - name: Install dependencies
-              run: pip3 install -U online-judge-verify-helper
-
+            # 🌟 1. テスト（Verify）の実行は公式アクションに任せる（これでPythonの環境構築も完了する）
             - name: Run verification
               uses: online-judge-tools/verification-helper@master
               with:
                   token: ${{ secrets.GITHUB_TOKEN }}
 
+            # 🌟 2. ドキュメント生成は、環境変数を「直接」渡してコマンドで実行する（バグ回避）
             - name: Generate and Deploy Document
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
