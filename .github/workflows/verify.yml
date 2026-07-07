@@ -18,21 +18,20 @@ jobs:
               with:
                   fetch-depth: 0
 
-            # 🌟 1. 公式アクションで Python 3.11.x の最新安定版を確実にインストール
+            # 1. 公式アクションで Python 3.11.x をインストール
             - name: Set up Python 3.11
               uses: actions/setup-python@v5
               with:
                   python-version: "3.11"
-                  # キャッシュを無効化して、確実にこのステップのPythonパスを通す
                   update-environment-path: true
 
-            # 🌟 2. インストールした Python の実体を使って、確実にその場に仮想環境(venv)を構築
+            # 🌟 2. 仮想環境(venv)をリポジトリの外（ユーザーディレクトリ直下）に作成してパスを通す
             - name: Create and Activate Virtual Environment
               run: |
-                  python -m venv venv
-                  echo "$GITHUB_WORKSPACE/venv/bin" >> $GITHUB_PATH
+                  python -m venv /home/runner/venv
+                  echo "/home/runner/venv/bin" >> $GITHUB_PATH
 
-            # 🌟 3. 仮想環境内に必要なツールをインストール（これで 100% 3.11 環境に入ります）
+            # 3. 仮想環境内に必要なツールをインストール
             - name: Install dependencies
               run: |
                   pip install --upgrade pip
@@ -40,14 +39,14 @@ jobs:
                   pip install online-judge-verify-helper
                   pip install online-judge-tools
 
-            # 🌟 4. テスト（Verify）の実行
+            # 4. テスト（Verify）の実行
             - name: Run verification
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
                   oj-verify run
 
-            # 🌟 5. ドキュメント生成とデプロイ
+            # 5. ドキュメント生成とデプロイ
             - name: Generate and Deploy Document
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
