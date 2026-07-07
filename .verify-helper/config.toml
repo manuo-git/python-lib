@@ -1,2 +1,2 @@
-[languages.python]
+[policy]
 include = [ "^(src|test)/.*\\.py$" ]
