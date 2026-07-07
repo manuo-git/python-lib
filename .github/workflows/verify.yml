@@ -17,13 +17,19 @@ jobs:
               with:
                   python-version: "3.12.0"
 
+            - name: Install dependencies
+              run: |
+                  pip install online-judge-verify-helper
+                  pip install online-judge-tools
+
             - name: Run verification
-              uses: online-judge-tools/verification-helper@master
-              with:
-                  token: ${{ secrets.GITHUB_TOKEN }}
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  oj-verify run
 
             - name: Generate and Deploy Document
-              uses: online-judge-tools/verification-helper@master
-              with:
-                  token: ${{ secrets.GITHUB_TOKEN }}
-                  _command: docs
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  oj-verify docs
