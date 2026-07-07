@@ -19,12 +19,12 @@ jobs:
                   python-version: "3.10"
 
             - name: Run verification
-              uses: kamyu104/online-judge-verify-helper@master
+              uses: online-judge-tools/verification-helper@master
               with:
                   token: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Generate and Deploy Document
-              uses: kamyu104/online-judge-verify-helper@master
+              uses: online-judge-tools/verification-helper@master
               with:
                   token: ${{ secrets.GITHUB_TOKEN }}
                   _command: docs
