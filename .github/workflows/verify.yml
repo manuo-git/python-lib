@@ -18,12 +18,12 @@ jobs:
                   python-version: "3.12.0"
 
             - name: Run verification
-              uses: online-judge-tools/official-actions@master
+              uses: online-judge-tools/verification-helper@master
               with:
                   token: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Generate and Deploy Document
-              uses: online-judge-tools/official-actions@master
+              uses: online-judge-tools/verification-helper@master
               with:
                   token: ${{ secrets.GITHUB_TOKEN }}
                   _command: docs
