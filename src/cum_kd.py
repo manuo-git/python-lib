@@ -57,7 +57,7 @@ class cumKD:
                 for x in range(base + step, base + period):
                     dat[x] += dat[x - step]
     
-    def rec(self, x, y):
+    def rec(self, x, y): # [x, y)
         xd = [self.digit(x, k) for k in range(self.k)]
         yd = [self.digit(y, k) for k in range(self.k)]
         return self.rec_coords(xd, yd)
