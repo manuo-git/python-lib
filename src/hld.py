@@ -2,8 +2,8 @@
 # prefix: hld
 # ---
 class HLD:
-    N: int
-    E: list[list[tuple[int, int]]]
+    n: int
+    edges: list[list[tuple[int, int]]]
     root: int
     parent: list[int]
     depth: list[int]
@@ -15,70 +15,25 @@ class HLD:
     dist_from_root: list[int]
     edge_to_child: list[int]
 
-    def __init__(self, N: int, E, root: int = 0) -> None:
+    def __init__(self, n: int, root: int = 0) -> None:
         """HLD (Heavy-Light Decomposition) クラスを初期化し、内部構造を構築する。
 
         Args:
-            N (int): 木の頂点数。
-            E (Union[List[Tuple], List[List]]): 木の構造を表すデータ。
-                辺リスト形式 [(u, v), ...] もしくは [(u, v, w), ...]、
-                または隣接リスト形式 [[v, ...], ...] もしくは [[(v, w), ...], ...]。
+            n (int): 木の頂点数。
             root (int): 木の根とする頂点番号。デフォルトは 0。
 
-        Note:
-            Codonの静的型チェックを回避するため、辺リストの解析にはリスト変換を利用している。
         """
-        self.N = N
+        self.n = n
         self.root = root
-        self.E = [[] for _ in range(N)]
-        self.edge_to_child = []
-        
-        edge_list_for_child: list[tuple[int, int]] = []
-        
-        if len(E) > 0:
-            sample = E[0]
-            if isinstance(sample, tuple):
-                for e in E:
-                    e_list = list(e)
-                    u, v = e_list[0], e_list[1]
-                    w = e_list[2] if len(e_list) >= 3 else 1
-                    self.E[u].append((v, w))
-                    self.E[v].append((u, w))
-                    edge_list_for_child.append((u, v))
-            else:
-                for i in range(N):
-                    for e in E[i]:
-                        if isinstance(e, int):
-                            v_id = e
-                            w_val = 1
-                        else:
-                            # タプルやリストから安全に値を取る
-                            e_inner = list(e)
-                            v_id = e_inner[0]
-                            w_val = e_inner[1]
-                        self.E[i].append((v_id, w_val))
-                        if i < v_id:
-                            edge_list_for_child.append((i, v_id))
+        self.edges = [[] for _ in range(n)]
+        self.uv = []
 
-        self.parent = [0] * N
-        self.depth = [-1] * N
-        self.size = [0] * N
-        self.heavy = [-1] * N
-        self.head = [0] * N
-        self.vid = [0] * N
-        self.inv_vid = []
-        self.dist_from_root = [0] * N
-        
-        self._build()
+    def add_edge(self, u: int, v: int, w: int = 1):
+        self.edges[u].append((v, w))
+        self.edges[v].append((u, w))
+        self.uv.append((u, v))
 
-        if len(edge_list_for_child) > 0:
-            self.edge_to_child = [0] * len(edge_list_for_child)
-            for i in range(len(edge_list_for_child)):
-                uv = edge_list_for_child[i]
-                u_id, v_id = uv[0], uv[1]
-                self.edge_to_child[i] = v_id if self.depth[v_id] > self.depth[u_id] else u_id
-
-    def _build(self) -> None:
+    def build(self) -> None:
         """木の情報を走査し、部分木サイズ、重い辺、各頂点のHLD上のIDを計算する。
 
         このメソッドは内部的に2回の走査を行う:
@@ -87,8 +42,17 @@ class HLD:
         その後、重い辺を優先的に走査してパスを分解 (Heavy-Light Decomposition) し、
         各頂点にセグメント木等で利用可能な連続した ID (vid) を割り当てる。
         """
-        N = self.N
-        E = self.E
+        n = self.n
+        self.parent = [0] * n
+        self.depth = [-1] * n
+        self.size = [0] * n
+        self.heavy = [-1] * n
+        self.head = [0] * n
+        self.vid = [0] * n
+        self.inv_vid = []
+        self.dist_from_root = [0] * n
+        self.edge_to_child = []
+        edges = self.edges
         parent = self.parent
         depth = self.depth
         size = self.size
@@ -102,7 +66,7 @@ class HLD:
             order.append(i)
             parent[i] = p
             size[i] = 1
-            for j, w in E[i]:
+            for j, w in edges[i]:
                 if p == j: continue
                 assert depth[j] == -1, "this input is not tree."
                 depth[j] = depth[i]+1
@@ -124,14 +88,19 @@ class HLD:
             i, hi = q.pop()
             inv_vid.append(i)
             head[i] = hi
-            for j, _ in E[i]:
+            for j, _ in edges[i]:
                 if j == parent[i]: continue
                 if j == heavy[i]: continue
                 q.append((j, j))
             if heavy[i] >= 0:
                 q.append((heavy[i], hi))
-        for i in range(N):
+        for i in range(n):
             vid[inv_vid[i]] = i
+
+        assert len(self.uv) == self.n-1
+        self.edge_to_child = [0] * (self.n-1)
+        for i, (u, v) in enumerate(self.uv):
+            self.edge_to_child[i] = v if self.depth[v] > self.depth[u] else u
 
     def get_lca(self, u: int, v: int):
         """2頂点 u, v の最近共通祖先 (LCA) を返す。
@@ -366,53 +335,38 @@ class HLD:
         if l < r:
             apply_func(l, r, x)
     
-    def set(self, u: int, set_func, x) -> None:
-        """頂点 u の値を更新する。
+    def set(self, u: int, set_func, x, edge: bool = False) -> None:
+        """頂点 u の値、もしくは辺番号 u の値を更新する。
 
         Args:
-            u (int): 更新対象の頂点。
+            u (int): 頂点クエリの場合は更新対象の頂点番号。辺番号を指定する場合は辺番号。
             set_func (Callable[[int, tuple[T, T]], None]): セグメント木の一点更新関数。
             x (T): 更新後の値。
+            edge (bool): 辺番号を指定する場合は True。
         """
-        set_func(self.vid[u], (x, x))
+        if not edge:
+            set_func(self.vid[u], (x, x))
+        else:
+            child = self.edge_to_child[u]
+            set_func(self.vid[child], (x, x))
 
-    def set_edge_by_id(self, edge_id: int, set_func, x) -> None:
-        """入力時の辺 ID を指定して、辺の重みを更新する。
-
-        Args:
-            edge_id (int): E に与えられた辺のインデックス。
-            set_func (Callable[[int, tuple[T, T]], None]): セグメント木の一点更新関数。
-            x (T): 更新後の重み。
-        """
-        child = self.edge_to_child[edge_id]
-        set_func(self.vid[child], (x, x))
-    
-    def get(self, u: int, get_func):
-        """頂点 u の現在の値を取得する。
+    def get(self, u: int, get_func, edge: bool = False):
+        """頂点 u、もしくは辺番号 u の現在の値を取得する。
 
         Args:
             u (int): 取得対象の頂点。
             get_func (Callable[[int], tuple[T, T]]): セグメント木の一点取得関数。
-
+            edge (bool): 辺番号を指定する場合は True。
         Returns:
-            T: 頂点 u の現在の値。
+            T: 頂点 u、もしくは辺番号 u の現在の値。
         """
-        val_pair = get_func(self.vid[u])
-        return val_pair[0]
-
-    def get_edge_by_id(self, edge_id: int, get_func):
-        """入力時の辺 ID を指定して、辺の現在の重みを取得する。
-
-        Args:
-            edge_id (int): E に与えられた辺のインデックス。
-            get_func (Callable[[int], tuple[T, T]]): セグメント木の一点取得関数。
-
-        Returns:
-            T: 指定された辺の現在の重み。
-        """
-        child = self.edge_to_child[edge_id]
-        val_pair = get_func(self.vid[child])
-        return val_pair[0]
+        if not edge:
+            val_pair = get_func(self.vid[u])
+            return val_pair[0]
+        else:
+            child = self.edge_to_child[u]
+            val_pair = get_func(self.vid[child])
+            return val_pair[0]
     
     def make_v(self, original_values: list, e, edge: bool = False):
         """元の順序の値を、HLD順に並べ替えた (forward, backward) のペアリストに変換する。
@@ -431,16 +385,16 @@ class HLD:
         """
         if not edge:
             # 頂点クエリの場合、頂点数とリストの長さが一致することを確認
-            assert len(original_values) == self.N, f"Expected length {self.N}, but got {len(original_values)}"
-            hld_ordered: list = [original_values[0]] * self.N # 型推論のための仮初期化
+            assert len(original_values) == self.n, f"Expected length {self.n}, but got {len(original_values)}"
+            hld_ordered: list = [original_values[0]] * self.n # 型推論のための仮初期化
             for i, val in enumerate(original_values):
                 hld_ordered[self.vid[i]] = val
         else:
             # 辺クエリの場合、根の補完用 e が必須であり、リストの長さは N-1 であることを確認
             if e is None: # assertの代わりに明示的なif
                 raise ValueError("Edge queries require identity element e")
-            assert len(original_values) == self.N - 1, f"Expected length {self.N-1}, but got {len(original_values)}"
-            hld_ordered = [e] * self.N
+            assert len(original_values) == self.n - 1, f"Expected length {self.n-1}, but got {len(original_values)}"
+            hld_ordered = [e] * self.n
             for i, val in enumerate(original_values):
                 child = self.edge_to_child[i]
                 hld_ordered[self.vid[child]] = val
@@ -529,19 +483,10 @@ class HLD:
 """
 0. 初期化
 """
-# hld = HLD(N, E, root)
+# hld = HLD(N, root)
 
-# Eは隣接リストと辺列挙どちらにも対応
-# 隣接リスト(コストなし)
-# [[v, ...], [v, ...], ...]
-# 隣接リスト(コストあり)
-# [[(v, w), ...], [(v, w), ...], ...]
-# 辺列挙(コストなし)
-# [(u, v), ...] 
-# 辺列挙(コストあり)
-# [(u, v, w), ...]
-
-# 辺クエリの場合は辺列挙のみに対応(辺の番号を入力順に管理するため)
+# (u, v)に重みwの辺を追加
+# hld.add_edge(u, v, w)
 
 """
 1. 準備: セグメント木 (一点更新・パス集約・部分木集約)
@@ -603,9 +548,6 @@ class HLD:
    辺の値を「根から遠い方の頂点」に持たせて管理します。
    edge=True を指定することで LCA (頂点) を自動的に除外します。
 """
-# ※※※注意※※※ 辺クエリの初期化は必ず辺列挙のEを使う
-# E = [(u, v), ...]
-# hld = HLD(N, E, root)
 
 # --- 準備 (辺の初期値リストから HLD 順のペアリストを作成) ---
 # S = SegTree(
