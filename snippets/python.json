@@ -1923,6 +1923,7 @@
             "class HLD:",
             "    n: int",
             "    edges: list[list[tuple[int, int]]]",
+            "    uv: list[tuple[int, int]]",
             "    root: int",
             "    parent: list[int]",
             "    depth: list[int]",
