@@ -4920,7 +4920,7 @@
             "rle"
         ],
         "body": [
-            "rle = [(x, len(list(c))) for x, c in groupby()]"
+            "rle = [(x, len(list(c))) for x, c in groupby($1)]"
         ]
     },
     "Rolling Hash": {
