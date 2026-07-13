@@ -122,6 +122,14 @@ def _extended_pow():
         v = int(v128)
         return v + mod if v != 0 and (0 < v) != (0 < mod) else v
     return _codon_pow
+
+def isqrt(n: int) -> int:
+    if n <= 0: return 0
+    x = int(math.sqrt(n))
+    while (x+1)*(x+1) <= n: x += 1
+    while x*x > n: x -= 1
+    return x
+
 pow = _extended_pow()
 MOD = 998244353 #10**9+7
 def exit(): sys.exit()
