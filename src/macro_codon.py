@@ -4,7 +4,7 @@
 from collections import deque, defaultdict, Counter
 from bisect import bisect_left, bisect_right
 from itertools import permutations, combinations, groupby
-from heapq import heappop, heappush
+from heapq import heappop, heappush, insort
 import math, sys
 def printl(li, sep=" "): print(sep.join(map(str, li)))
 def yn(flag): print(Yes if flag else No)
