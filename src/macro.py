@@ -2,9 +2,9 @@
 # prefix: mac
 # ---
 from collections import deque, defaultdict, Counter
-from bisect import bisect_left, bisect_right
+from bisect import bisect_left, bisect_right, insort
 from itertools import permutations, combinations, groupby
-from heapq import heappop, heappush, insort
+from heapq import heappop, heappush
 import math, sys
 input = lambda: sys.stdin.readline().rstrip("\r\n")
 def printl(li, sep=" "): print(sep.join(map(str, li)))
