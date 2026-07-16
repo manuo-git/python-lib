@@ -3033,6 +3033,25 @@
             "        return self.depth_dist[u]+self.depth_dist[v] - 2*self._lca_depth_dist(u, v)"
         ]
     },
+    "LCS": {
+        "description": "[lcs.py] 競プロライブラリ: LCS",
+        "prefix": [
+            "lcs"
+        ],
+        "body": [
+            "def LCS(s, t): # O(|s|*|t|)",
+            "    N = len(s)",
+            "    M = len(t)",
+            "    dp = [[0]*(M+1) for _ in range(N+1)]",
+            "    for i in range(N+1):",
+            "        for j in range(M+1):",
+            "            if j < M: dp[i][j+1] = max(dp[i][j+1], dp[i][j])",
+            "            if i < N: dp[i+1][j] = max(dp[i+1][j], dp[i][j])",
+            "            if i < N and j < M and s[i] == t[j]:",
+            "                dp[i+1][j+1] = max(dp[i+1][j+1], dp[i][j]+1)",
+            "    return dp[N][M]"
+        ]
+    },
     "Line Segments": {
         "description": "[line_segment.py] 競プロライブラリ: Line Segments",
         "prefix": [
