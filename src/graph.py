@@ -3,12 +3,11 @@
 # ---
 from heapq import heappop, heappush
 from collections import deque
-from typing import *
 class Graph:
     INF = 1<<60
-    shift = 20
-    mask = (1<<20)-1
     memory_cap = 130000
+    shift: int
+    mask: int
     _n: int
     _E: list[list[int]]
     _max_cost: int
@@ -17,7 +16,8 @@ class Graph:
     _bf: list[int]
 
     def __init__(self, n: int):
-        assert n <= 1<<Graph.shift, "Please consider increasing the Graph.shift value."
+        self.shift = (n-1).bit_length()
+        self.mask = (1<<self.shift)-1
         self._n = n
         self._E = [[] for _ in range(self._n)]
         self._max_cost = 0
@@ -32,7 +32,7 @@ class Graph:
         assert 0 <= v < self._n
         assert 0 <= c
         if self._max_cost < c: self._max_cost = c
-        self._E[u].append(c<<Graph.shift | v)
+        self._E[u].append(c<<self.shift | v)
     
     def calc_dist(self, start: int) -> None:
         border = Graph.memory_cap//self._n
@@ -44,7 +44,7 @@ class Graph:
             self.dijkstra(start)
         return self._dist[:]
     
-    def dijkstra(self, start: int) -> List[int]:
+    def dijkstra(self, start: int) -> list[int]:
         assert 0 <= start < self._n
         self._init_data()
         self._dist[start] = 0
@@ -52,21 +52,21 @@ class Graph:
         q = [start]
         while q:
             ni = heappop(q)
-            cost, i = ni >> Graph.shift, ni & Graph.mask
+            cost, i = ni >> self.shift, ni & self.mask
             if self._vis[i]: continue
             self._vis[i] = 1
             for nj in self._E[i]:
-                c, j = nj >> Graph.shift, nj & Graph.mask
+                c, j = nj >> self.shift, nj & self.mask
                 tc = cost+c
                 if self._vis[j]: continue
                 if self._dist[j] <= tc: continue
                 self._dist[j] = tc
                 self._bf[j] = i
-                heappush(q, tc<<Graph.shift | j)
+                heappush(q, tc<<self.shift | j)
         return self._dist
     
     # https://tjkendev.github.io/procon-library/python/graph/dial.html
-    def dials_algorithm(self, start: int) -> List[int]:
+    def dials_algorithm(self, start: int) -> list[int]:
         assert 0 <= start < self._n
         self._init_data()
         _m = self._n*self._max_cost
@@ -91,7 +91,7 @@ class Graph:
             while i != -1:
                 self._vis[i] = 1
                 for nj in self._E[i]:
-                    c, j = nj >> Graph.shift, nj & Graph.mask
+                    c, j = nj >> self.shift, nj & self.mask
                     tc = w + c
                     if tc >= self._dist[j]: continue
                     d = self._dist[j]
@@ -123,7 +123,7 @@ class Graph:
             if self._vis[i]: continue
             self._vis[i] = 1
             for nj in self._E[i]:
-                c, j = nj >> Graph.shift, nj & Graph.mask
+                c, j = nj >> self.shift, nj & self.mask
                 assert 0 <= c <= 1
                 tc = self._dist[i]+c
                 if self._vis[j]: continue
@@ -144,7 +144,7 @@ class Graph:
             if self._vis[i]: continue
             self._vis[i] = 1
             for nj in self._E[i]:
-                c, j = nj >> Graph.shift, nj & Graph.mask
+                c, j = nj >> self.shift, nj & self.mask
                 assert c == 1
                 tc = self._dist[i]+c
                 if self._vis[j]: continue
@@ -159,9 +159,9 @@ class Graph:
     def vis(self, goal: int) -> int:
         return self._vis[goal]
     
-    def path_to(self, goal: int) -> Union[List[int], None]:
+    def path_to(self, goal: int) -> list[int]:
         assert 0 <= goal < self._n
-        if self._vis[goal] == 0: return None
+        if self._vis[goal] == 0: return []
         cur = goal
         ret = [cur]
         while cur != self._last_start:
