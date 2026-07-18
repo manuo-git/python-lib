@@ -2,9 +2,9 @@
 # prefix: macro_codon
 # ---
 from collections import deque, defaultdict, Counter
-from bisect import bisect_left, bisect_right
+from bisect import bisect_left, bisect_right, insort
 from itertools import permutations, combinations, groupby
-from heapq import heappop, heappush, insort
+from heapq import heappop, heappush
 import math, sys
 def printl(li, sep=" "): print(sep.join(map(str, li)))
 def yn(flag): print(Yes if flag else No)
