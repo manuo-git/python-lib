@@ -3,9 +3,8 @@
 # ---
 from heapq import heappop, heappush
 from collections import deque
+MEMORY_CAP: int = 130000
 class Graph:
-    INF = 1<<60
-    memory_cap = 130000
     shift: int
     mask: int
     _n: int
@@ -14,7 +13,7 @@ class Graph:
     _dist: list[int]
     _vis: list[int]
     _bf: list[int]
-
+    _last_start: int
     def __init__(self, n: int):
         self.shift = (n-1).bit_length()
         self.mask = (1<<self.shift)-1
@@ -23,7 +22,7 @@ class Graph:
         self._max_cost = 0
     
     def _init_data(self) -> None:
-        self._dist = [Graph.INF]*self._n
+        self._dist = [INF]*self._n
         self._vis = [0]*self._n
         self._bf = [-1]*self._n
     
@@ -33,18 +32,17 @@ class Graph:
         assert 0 <= c
         if self._max_cost < c: self._max_cost = c
         self._E[u].append(c<<self.shift | v)
-    
-    def calc_dist(self, start: int) -> None:
-        border = Graph.memory_cap//self._n
+
+    def calc_dist(self, start: int):
+        border = MEMORY_CAP//self._n
         if self._max_cost <= 1:
             self.bfs01(start)
         elif self._max_cost <= border:
             self.dials_algorithm(start)
         else:
             self.dijkstra(start)
-        return self._dist[:]
-    
-    def dijkstra(self, start: int) -> list[int]:
+
+    def dijkstra(self, start: int) -> None:
         assert 0 <= start < self._n
         self._init_data()
         self._dist[start] = 0
@@ -63,10 +61,9 @@ class Graph:
                 self._dist[j] = tc
                 self._bf[j] = i
                 heappush(q, tc<<self.shift | j)
-        return self._dist
     
     # https://tjkendev.github.io/procon-library/python/graph/dial.html
-    def dials_algorithm(self, start: int) -> list[int]:
+    def dials_algorithm(self, start: int) -> None:
         assert 0 <= start < self._n
         self._init_data()
         _m = self._n*self._max_cost
@@ -81,7 +78,7 @@ class Graph:
         if start > 0: nxt[start-1] = (start+1 if start < self._n-1 else -1)
         prv[start] = nxt[start] = -1
         B[0] = L[0] = start
-        B[_m] = +(start == 0)
+        B[_m] = (1 if start == 0 else 0)
         L[_m] = (self._n-1 if start < self._n-1 else self._n-2)
         
         self._dist[start] = 0
@@ -132,26 +129,6 @@ class Graph:
                 self._bf[j] = i
                 if c == 0: q.appendleft(j)
                 else: q.append(j)
-
-    def bfs(self, start: int) -> None:
-        assert 0 <= start < self._n
-        self._init_data()
-        self._dist[start] = 0
-        self._last_start = start
-        q = deque([start])
-        while q:
-            i = q.popleft()
-            if self._vis[i]: continue
-            self._vis[i] = 1
-            for nj in self._E[i]:
-                c, j = nj >> self.shift, nj & self.mask
-                assert c == 1
-                tc = self._dist[i]+c
-                if self._vis[j]: continue
-                if self._dist[j] <= tc: continue
-                self._dist[j] = tc
-                self._bf[j] = i
-                q.append(j)
 
     def dist(self, goal: int) -> int:
         return self._dist[goal]
