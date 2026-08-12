@@ -1,4 +1,4 @@
 # name: Position NG
 # prefix: posng
 # ---
-if ni < 0 or H <= ni or nj < 0 or W <= nj: continue
+if not(0 <= ni < H and 0 <= nj < W): continue
