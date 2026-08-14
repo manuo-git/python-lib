@@ -1,8 +1,8 @@
 # name: Graph
 # prefix: graph
 # ---
-from heapq import heappop, heappush
-from collections import deque
+import heapq
+import collections
 MEMORY_CAP: int = 130000
 class Graph:
     shift: int
@@ -33,7 +33,7 @@ class Graph:
         if self._max_cost < c: self._max_cost = c
         self._E[u].append(c<<self.shift | v)
 
-    def calc_dist(self, start: int):
+    def calc_dist(self, start: int) -> None:
         border = MEMORY_CAP//self._n
         if self._max_cost <= 1:
             self.bfs01(start)
@@ -49,7 +49,7 @@ class Graph:
         self._last_start = start
         q = [start]
         while q:
-            ni = heappop(q)
+            ni = heapq.heappop(q)
             cost, i = ni >> self.shift, ni & self.mask
             if self._vis[i]: continue
             self._vis[i] = 1
@@ -60,7 +60,7 @@ class Graph:
                 if self._dist[j] <= tc: continue
                 self._dist[j] = tc
                 self._bf[j] = i
-                heappush(q, tc<<self.shift | j)
+                heapq.heappush(q, tc<<self.shift | j)
     
     # https://tjkendev.github.io/procon-library/python/graph/dial.html
     def dials_algorithm(self, start: int) -> None:
@@ -114,7 +114,7 @@ class Graph:
         self._init_data()
         self._dist[start] = 0
         self._last_start = start
-        q = deque([start])
+        q = collections.deque[int]([start])
         while q:
             i = q.popleft()
             if self._vis[i]: continue
