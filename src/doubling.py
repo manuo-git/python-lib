@@ -39,8 +39,8 @@ class Doubling:
     
     def pow_list(self, k):
         bi = k
-        cur = [i for i in range(N)]
+        cur = [i for i in range(self.n)]
         for k in range(self.log):
             if bi>>k&1 == 0: continue
-            cur = [self.dp[k][cur[i]] for i in range(N)]
+            cur = [self.dp[k][cur[i]] for i in range(self.n)]
         return cur
