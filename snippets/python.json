@@ -1356,6 +1356,33 @@
             "        return [y[v] for v in y]"
         ]
     },
+    "Doubling O(N)": {
+        "description": "[doubling_o(n).py] 競プロライブラリ: Doubling O(N)",
+        "prefix": [
+            "doubling_o(n)"
+        ],
+        "body": [
+            "def f(x, p, si):",
+            "    i = si",
+            "    size = len(x)",
+            "    vis = [-1]*size",
+            "    vis[i] = 0",
+            "    n = 0",
+            "    while n < p:",
+            "        ni = x[i]",
+            "        i = ni",
+            "        n += 1",
+            "        if vis[i] >= 0:",
+            "            d = n-vis[i]",
+            "            n += (p-n)//d*d",
+            "            break",
+            "        vis[i] = n",
+            "    while n < p:",
+            "        i = x[i]",
+            "        n += 1",
+            "    return i"
+        ]
+    },
     "Edge DSU": {
         "description": "[edsu.py] 競プロライブラリ: Edge DSU",
         "prefix": [
