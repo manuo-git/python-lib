@@ -3,8 +3,9 @@
 # ---
 # B_i <- A_x_i
 def f(x, p): # O(NlogP) 使いまわすなら真面目に
+    n = len(x)
     if p == 0:
-        return [i for i in range(N)]
+        return [i for i in range(n)]
     elif p%2:
         y = f(x, p-1)
         return [y[v] for v in x]
