@@ -6,7 +6,7 @@ from typing import Iterable, Union
 
 # O(NMAX)。MODが素数じゃないときは二次元配列を作ってO(NMAX^2)で求める。
 # comb2を参照
-NMAX = 1000000
+NMAX = 1000000 
 COMB_F = [1]*(NMAX+1)
 for i in range(2, NMAX+1):
     COMB_F[i] = COMB_F[i-1]*i%MOD
