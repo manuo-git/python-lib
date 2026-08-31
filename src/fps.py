@@ -114,7 +114,7 @@ def butterfly_inv(a):
                 irot %= MOD
             le -= 2
 
-def convolution(s, t, limit: int | None = None):
+def convolution(s, t, limit: int = 1<<20):
     n = len(s)
     m = len(t)
     if min(n, m) <= 60:
@@ -129,12 +129,7 @@ def convolution(s, t, limit: int | None = None):
                     a[i + j] += s[i] * t[j]
         return [x % MOD for x in a]
     full_len = n + m - 1
-    if limit is not None:
-        if limit <= 0:
-            return []
-        target_len = min(full_len, limit)
-    else:
-        target_len = full_len
+    target_len = min(full_len, limit)
     a = s[::]
     b = t[::]
     z = 1 << (n + m - 2).bit_length()
@@ -169,7 +164,7 @@ class FPSContext:
                 "This first version uses NTT modulo 998244353 only."
             )
 
-    def __call__(self, coeffs: Iterable[int] | int) -> "FPS":
+    def __call__(self, coeffs) -> "FPS":
         if isinstance(coeffs, int):
             coeffs = [coeffs]
         return FPS(self, list(coeffs))
@@ -241,7 +236,7 @@ class FPS:
         self,
         ctx: FPSContext,
         coeffs: Iterable[int],
-        special: tuple[str, int, int] | tuple[str, int] | None = None,
+        special = None,
     ):
         self.ctx = ctx
         self._special = special
@@ -1008,9 +1003,13 @@ class FPS:
     # ------------------------------------------------------------
 
     def inv(self) -> "FPS":
-        """Multiplicative inverse.
+        """Multiplicative inverse by Newton iteration.
 
-        O(n^2) formal division.
+        Complexity:
+            O(N log N)
+
+        assuming convolution is implemented in
+        O(N log N).
         """
 
         if self.constant() == 0:
@@ -1019,39 +1018,72 @@ class FPS:
                 "is not invertible"
             )
 
+        # Special representation cannot be used directly.
         self = self._normal()
 
         n = self.ctx.n
 
-        out = [0] * n
+        if n == 0:
+            return self.ctx.zero()
 
-        out[0] = pow(
-            self.a[0],
-            self.ctx.mod - 2,
-            self.ctx.mod,
-        )
+        mod = self.ctx.mod
 
-        for i in range(1, n):
-            s = 0
+        # --------------------------------------------------------
+        # g = 1 / f
+        #
+        # Start with the constant term:
+        #
+        #   g[0] = 1 / f[0]
+        #
+        # so that
+        #
+        #   f*g == 1 (mod x)
+        # --------------------------------------------------------
 
-            upper = min(
-                i,
-                len(self.a) - 1,
+        g = [
+            pow(
+                self.a[0],
+                mod - 2,
+                mod,
             )
+        ]
 
-            for j in range(1, upper + 1):
-                s += (
-                    self.a[j]
-                    * out[i - j]
-                )
+        m = 1
 
-            out[i] = (
-                -s
-                * out[0]
-                % self.ctx.mod
-            )
+        # --------------------------------------------------------
+        # Newton iteration
+        #
+        # g <- g * (2 - f*g)
+        #
+        # If g is correct modulo x^m,
+        # the new g is correct modulo x^(2m).
+        # --------------------------------------------------------
 
-        return FPS(self.ctx, out)
+        while m < n:
+            next_m = min(2 * m, n)
+
+            # f modulo x^next_m
+            f = self.a[:next_m]
+
+            # f * g modulo x^next_m
+            fg = convolution(f, g, next_m)
+            fg += [0] * (next_m - len(fg))
+
+            # 2 - f*g
+            h = [0] * next_m
+
+            h[0] = (2 - fg[0]) % mod
+
+            for i in range(1, next_m):
+                h[i] = (-fg[i]) % mod
+
+            # g * (2 - f*g)
+            g = convolution(g, h, next_m)
+            g += [0] * (next_m - len(g))
+
+            m = next_m
+
+        return FPS(self.ctx, g)
 
     def log(self) -> "FPS":
         if self.constant() != 1:
@@ -1196,6 +1228,45 @@ class FPS:
                 "FPS objects must belong to "
                 "the same FPSContext"
             )
+
+    def list(
+        self,
+        l = None,
+        r = None,
+    ) -> list[int]:
+        """Return coefficients as a list.
+
+        list()
+            Return self.a directly.
+
+        list(l, r)
+            Return coefficients in [l, r).
+            Missing coefficients are zero-padded.
+        """
+
+        if l is None and r is None:
+            return self.a
+
+        if l is None or r is None:
+            raise TypeError(
+                "list() takes either 0 or 2 arguments"
+            )
+
+        if l < 0:
+            l += self.ctx.n
+
+        if r < 0:
+            r += self.ctx.n
+
+        if not (0 <= l <= r <= self.ctx.n):
+            raise IndexError(
+                "FPS coefficient slice out of range"
+            )
+
+        return [
+            self._coeff(i)
+            for i in range(l, r)
+        ]
 
 
 # A convenient top-level constructor for contest code.
