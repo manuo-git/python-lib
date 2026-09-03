@@ -143,7 +143,63 @@ def convolution(s, t):
 
     return [v * iz % MOD for v in a]
 
+def _mod_sqrt(a: int, mod: int) -> int:
+    """Solve x^2 = a (mod mod).
 
+    Returns one square root if it exists.
+    Returns None if no square root exists.
+
+    Tonelli-Shanks.
+    """
+    a %= mod
+
+    if a == 0:
+        return 0
+
+    if mod == 2:
+        return a
+
+    # Euler's criterion.
+    if pow(a, (mod - 1) // 2, mod) != 1:
+        return -1
+
+    # mod - 1 = q * 2^s, q is odd.
+    q = mod - 1
+    s = 0
+
+    while q % 2 == 0:
+        q //= 2
+        s += 1
+
+    # Find a quadratic non-residue z.
+    z = 2
+
+    while pow(z, (mod - 1) // 2, mod) != mod - 1:
+        z += 1
+
+    c = pow(z, q, mod)
+    x = pow(a, (q + 1) // 2, mod)
+    t = pow(a, q, mod)
+    m = s
+
+    while t != 1:
+        # Find the smallest i such that
+        # t^(2^i) = 1.
+        i = 1
+        t2 = t * t % mod
+
+        while t2 != 1:
+            t2 = t2 * t2 % mod
+            i += 1
+
+        b = pow(c, 1 << (m - i - 1), mod)
+
+        x = x * b % mod
+        c = b * b % mod
+        t = t * c % mod
+        m = i
+
+    return x
 
 @dataclass(frozen=True)
 class FPSContext:
@@ -164,20 +220,27 @@ class FPSContext:
                 "This first version uses NTT modulo 998244353 only."
             )
 
-        inv_int = [0] * self.n
+                # Largest power of two >= n.
+        limit = 1
+        while limit < self.n:
+            limit <<= 1
 
-        if self.n > 1:
-            inv_int[1] = 1
+        # We need inverse integers up to the largest
+        # NTT length and also for ordinary integration.
+        inv = [0] * (limit + 1)
 
-            for i in range(2, self.n):
-                inv_int[i] = (
-                    self.mod
-                    - (self.mod // i)
-                    * inv_int[self.mod % i]
-                    % self.mod
-                ) % self.mod
+        if limit >= 1:
+            inv[1] = 1
 
-        object.__setattr__(self, "inv_int", inv_int)
+        for i in range(2, limit + 1):
+            inv[i] = (
+                self.mod
+                - (self.mod // i)
+                * inv[self.mod % i]
+                % self.mod
+            ) % self.mod
+
+        object.__setattr__(self, "inv_int", inv)
 
     def __call__(self, coeffs) -> "FPS":
         if isinstance(coeffs, int):
@@ -1024,14 +1087,28 @@ class FPS:
 
         if len(self.a) <= 1:
             return self.ctx.zero()
-
+        
         return FPS(
             self.ctx,
-            [
-                i * self.a[i]
-                for i in range(1, len(self.a))
-            ],
+            self._diff_list(self.a)
         )
+
+    def _diff_list(self, a: list[int]) -> list[int]:
+        n = len(a)
+
+        if n == 0:
+            return []
+
+        out = [0] * n
+
+        for i in range(n - 1):
+            out[i] = (
+                (i + 1)
+                * a[i + 1]
+                % self.ctx.mod
+            )
+
+        return out
 
     def integral(self) -> "FPS":
         n = self.ctx.n
@@ -1055,90 +1132,107 @@ class FPS:
 
         return FPS(self.ctx, out)
 
+    def _integral_list(self, a: list[int]) -> list[int]:
+        n = len(a)
+        mod = self.ctx.mod
+        inv = self.ctx.inv_int
+
+        out = [0] * (n + 1)
+
+        for i in range(n):
+            out[i + 1] = (
+                a[i]
+                * inv[i + 1]
+                % mod
+            )
+
+        return out
+
     # ------------------------------------------------------------
     # Inverse / log / exp
     # ------------------------------------------------------------
 
     def inv(self) -> "FPS":
-        """Multiplicative inverse by Newton iteration.
+        """Return the multiplicative inverse of this FPS.
+
+        Requires self[0] != 0.
 
         Complexity:
             O(N log N)
-
-        assuming convolution is implemented in
-        O(N log N).
         """
-
-        if self.constant() == 0:
-            raise ZeroDivisionError(
-                "FPS with constant term 0 "
-                "is not invertible"
-            )
-
-        # Special representation cannot be used directly.
-        self = self._normal()
-
         n = self.ctx.n
+        mod = self.ctx.mod
 
         if n == 0:
             return self.ctx.zero()
 
-        mod = self.ctx.mod
-
-        # --------------------------------------------------------
-        # g = 1 / f
-        #
-        # Start with the constant term:
-        #
-        #   g[0] = 1 / f[0]
-        #
-        # so that
-        #
-        #   f*g == 1 (mod x)
-        # --------------------------------------------------------
-
-        g = [
-            pow(
-                self.a[0],
-                mod - 2,
-                mod,
+        if self.constant() == 0:
+            raise ZeroDivisionError(
+                "FPS with constant term 0 is not invertible"
             )
-        ]
 
-        m = 1
+        g = [0] * n
+        g[0] = pow(self.constant(), mod - 2, mod)
 
-        # --------------------------------------------------------
-        # Newton iteration
-        #
-        # g <- g * (2 - f*g)
-        #
-        # If g is correct modulo x^m,
-        # the new g is correct modulo x^(2m).
-        # --------------------------------------------------------
+        k = 1
 
-        while m < n:
-            next_m = min(2 * m, n)
+        # 1 / 4 modulo MOD
+        inv4 = 748683265
 
-            # f modulo x^next_m
-            f = self.a[:next_m]
+        # This is 1 / (4 * k), effectively.
+        factor = inv4
 
-            # f * g modulo x^next_m
-            fg = convolution(f, g)
-            fg += [0] * (next_m - len(fg))
+        while k < n:
+            k2 = k << 1
 
-            # 2 - f*g
-            h = [0] * next_m
+            # --------------------------------------------------
+            # F = self[:k2]
+            # G = g[:k]
+            # --------------------------------------------------
+            F = self.list(0, k2)
+            G = g[:k]
 
-            h[0] = (2 - fg[0]) % mod
+            # if len(F) < k2:
+                # F.extend([0] * (k2 - len(F)))
 
-            for i in range(1, next_m):
-                h[i] = (-fg[i]) % mod
+            G.extend([0] * (k2 - k))
 
-            # g * (2 - f*g)
-            g = convolution(g, h)
-            g += [0] * (next_m - len(g))
+            butterfly(F)
+            butterfly(G)
 
-            m = next_m
+            # --------------------------------------------------
+            # F = F * G
+            # --------------------------------------------------
+            for i in range(k2):
+                F[i] = F[i] * G[i] % mod
+
+            butterfly_inv(F)
+
+            # Only the upper half is the error we need.
+            for i in range(k):
+                F[i] = 0
+
+            butterfly(F)
+
+            # --------------------------------------------------
+            # F = F * G
+            # --------------------------------------------------
+            for i in range(k2):
+                F[i] = F[i] * G[i] % mod
+
+            butterfly_inv(F)
+
+            upper = min(k2, n)
+
+            for i in range(k, upper):
+                g[i] = (
+                    -F[i]
+                    * factor
+                    % mod
+                )
+
+            k = k2
+            factor = factor * inv4 % mod
 
         return FPS(self.ctx, g)
 
@@ -1148,79 +1242,487 @@ class FPS:
                 "log(f) requires f[0] == 1"
             )
 
-        return (
-            self.derivative()
-            * self.inv()
-        ).integral()
+        n = self.ctx.n
+
+        if n == 0:
+            return self.ctx.zero()
+
+        inverse = self.inv().list(0, n)
+        derivative = self._diff_list(
+            self.list(0, n)
+        )
+
+        product = convolution(
+            inverse,
+            derivative,
+        )
+
+        result = [0] * n
+        inv_table = self.ctx.inv_int
+
+        for i, value in enumerate(product):
+            if i+1 >= n: break
+            result[i + 1] = (
+                value * inv_table[i + 1]
+                % self.ctx.mod
+            )
+
+        return FPS(self.ctx, result)
 
     def exp(self) -> "FPS":
-        """Formal power series exponential.
-
-        Computes exp(self) modulo x^n by Newton iteration.
+        """Return exp(self) modulo x^n.
 
         Requires self[0] == 0.
 
-        Complexity:
-            O(N log N)
+        This is a relaxed-convolution based fast FPS exponential.
         """
+        n = self.ctx.n
+        mod = self.ctx.mod
 
         if self.constant() != 0:
             raise ValueError(
                 "exp(f) requires f[0] == 0"
             )
 
+        if n == 0:
+            return self.ctx.zero()
+
+        # --------------------------------------------------
+        # inverse of NTT lengths
+        # --------------------------------------------------
+        #
+        # The algorithm needs inv[2], inv[4], ...
+        # up to the largest NTT size.
+        #
+        # Prefer using the inverse table prepared in Context.
+        #
+        def intt(a: list[int]) -> None:
+            if len(a) <= 1:
+                return
+
+            butterfly_inv(a)
+
+            inv_len = self.ctx.inv_int[len(a)]
+
+            for i in range(len(a)):
+                a[i] = (
+                    a[i] * inv_len
+                ) % mod
+
+        # --------------------------------------------------
+        # b = exp(f) being constructed
+        #
+        # Initially:
+        #   b = 1 + f[1] x
+        # --------------------------------------------------
+        b = [
+            1,
+            self._coeff(1) if n > 1 else 0,
+        ]
+
+        # --------------------------------------------------
+        # c, z1, z2
+        #
+        # These are auxiliary series used to avoid repeatedly
+        # computing a full inverse.
+        # --------------------------------------------------
+        c = [1]
+
+        z2 = [1, 1]
+
+        m = 2
+
+        while m < n:
+            double_m = m << 1
+
+            # ==================================================
+            # y = NTT(b padded to 2m)
+            # ==================================================
+            y = b + [0] * m
+            butterfly(y)
+
+            # ==================================================
+            # Update c.
+            #
+            # z1 is the previous z2.
+            # ==================================================
+            z1 = z2
+
+            z = [
+                y[i] * z1[i] % mod
+                for i in range(len(z1))
+            ]
+
+            intt(z)
+
+            # Remove coefficients that are already known.
+            half_m = m >> 1
+
+            for i in range(half_m):
+                z[i] = 0
+
+            butterfly(z)
+
+            for i in range(len(z1)):
+                z[i] = (
+                    z[i]
+                    * (-z1[i])
+                    % mod
+                )
+
+            intt(z)
+
+            # c[m/2:] = z[m/2:]
+            c[half_m:] = z[half_m:]
+
+            # z2 = NTT(c padded to 2m)
+            z2 = c + [0] * m
+            butterfly(z2)
+
+            # ==================================================
+            # x = f'
+            # ==================================================
+            tmp = min(n, m)
+
+            x = self.list(0, tmp)
+
+            if len(x) < m:
+                x.extend([0] * (m - len(x)))
+            else:
+                x = x[:m]
+
+            x = self._diff_list(x)
+
+            # --------------------------------------------------
+            # Our diff_list keeps length m.
+            # This is exactly what the supplied fast version
+            # expects.
+            # --------------------------------------------------
+            butterfly(x)
+
+            for i in range(len(x)):
+                x[i] = (
+                    y[i]
+                    * x[i]
+                    % mod
+                )
+
+            intt(x)
+
+            # ==================================================
+            # x -= b'
+            # ==================================================
+            for i in range(1, len(b)):
+                x[i - 1] -= (
+                    b[i] * i % mod
+                )
+
+            # ==================================================
+            # Shift the upper half.
+            #
+            # We need:
+            #
+            #   x <- x shifted by m
+            #
+            # while keeping the old upper half.
+            # ==================================================
+            old_x = x[:]
+
+            x += old_x
+
+            x[-1] = 0
+
+            for i in range(m - 1):
+                x[i] = 0
+
+            # ==================================================
+            # Multiply by z2 in NTT domain.
+            # ==================================================
+            butterfly(x)
+
+            for i in range(len(z2)):
+                x[i] = (
+                    x[i]
+                    * z2[i]
+                    % mod
+                )
+
+            intt(x)
+
+            # ==================================================
+            # Integral.
+            #
+            # x[i] <- x[i] / (i+1)
+            #
+            # x is currently length 2m.
+            # ==================================================
+            x.pop()
+
+            x = self._integral_list(x)
+
+            # Remove coefficients which have already been fixed.
+            for i in range(m):
+                x[i] = 0
+
+            # Add the original f.
+            upper = min(n, double_m)
+
+            for i in range(m, upper):
+                x[i] += self._coeff(i)
+
+            # ==================================================
+            # b <- b + correction
+            #
+            # b_new = b + ...
+            # ==================================================
+            butterfly(x)
+
+            for i in range(len(y)):
+                x[i] = (
+                    x[i]
+                    * y[i]
+                    % mod
+                )
+
+            intt(x)
+
+            b[m:] = x[m:]
+
+            m = double_m
+
+        return FPS(
+            self.ctx,
+            b[:n],
+        )
+
+    def sqrt(self) -> Union["FPS", None]:
+        """Return a square root of this FPS modulo x^n.
+
+        Returns None if no square root exists.
+
+        Complexity:
+            O(N log N)
+
+        This is a specialized Newton iteration that simultaneously
+        maintains the square root and its inverse, avoiding repeated
+        generic FPS inverse/multiplication calls.
+        """
         n = self.ctx.n
         mod = self.ctx.mod
 
         if n == 0:
             return self.ctx.zero()
 
-        # exp(f) = 1 mod x
-        g = FPS(
-            self.ctx,
-            [1],
-        )
+        # --------------------------------------------------
+        # Find valuation.
+        # --------------------------------------------------
+        leading = self.valuation()
 
-        m = 1
+        # Zero FPS.
+        if leading == n:
+            return self.ctx.zero()
 
-        while m < n:
-            m2 = min(2 * m, n)
+        # Odd valuation -> no square root.
+        if leading & 1:
+            return None
 
-            ctx2 = FPSContext(
-                m2,
-                mod,
+        # sqrt(x^(2k) * h) = x^k * sqrt(h)
+        shift = leading >> 1
+        size = n - shift
+
+        # --------------------------------------------------
+        # h = self / x^leading
+        #
+        # h[0] != 0
+        # --------------------------------------------------
+        source = self.list(leading, n)
+        if len(source) < size:
+            source += [0] * (size - len(source))
+        else:
+            source = source[:size]
+
+        # --------------------------------------------------
+        # Square root of the leading coefficient.
+        # --------------------------------------------------
+        root = _mod_sqrt(source[0], self.ctx.mod)
+
+        if root < 0:
+            return None
+
+        # --------------------------------------------------
+        # result   = sqrt(h)
+        # inverse  = 1 / result
+        #
+        # Initially:
+        #
+        # result[0]  = root
+        # inverse[0] = 1 / root
+        # --------------------------------------------------
+        result = [0] * size
+        inverse = [0] * size
+
+        result[0] = root
+        inverse[0] = pow(root, mod - 2, mod)
+
+        inv2 = (mod + 1) // 2
+
+        length = 1
+
+        # NTT(result[:length])
+        transformed_result = [root]
+
+        # 1 / length
+        inverse_length = 1
+
+        while length < size:
+            double_length = length << 1
+
+            # ==================================================
+            # Compute result^2 in NTT domain.
+            #
+            # transformed_result = NTT(result[:length])
+            # ==================================================
+            for i in range(length):
+                value = transformed_result[i]
+                transformed_result[i] = (
+                    value * value % mod
+                )
+
+            butterfly_inv(transformed_result)
+
+            for i in range(length):
+                transformed_result[i] = (
+                    transformed_result[i]
+                    * inverse_length
+                    % mod
+                )
+
+            # ==================================================
+            # delta =
+            #   ((result^2 - source) >> length)
+            #
+            # Only the newly needed coefficients are constructed.
+            # ==================================================
+            delta = [0] * double_length
+
+            for i in range(length):
+                value = (
+                    transformed_result[i]
+                    - source[i]
+                )
+
+                index = i + length
+
+                if index < size:
+                    value -= source[index]
+
+                delta[index] = value
+
+            # ==================================================
+            # Convolve delta with inverse.
+            #
+            # delta <- delta / (result)
+            #
+            # in NTT.
+            # ==================================================
+            butterfly(delta)
+
+            transformed_inverse = [0] * double_length
+            transformed_inverse[:length] = inverse[:length]
+
+            butterfly(transformed_inverse)
+
+            for i in range(double_length):
+                delta[i] = (
+                    delta[i]
+                    * transformed_inverse[i]
+                    % mod
+                )
+
+            butterfly_inv(delta)
+
+            inverse_double_length = (
+                inverse_length * inv2 % mod
             )
 
-            # f を x^m2 未満に切る
-            f2 = ctx2(
-                self.list(0, m2)
-            )
+            upper = min(double_length, size)
 
-            # 現在の近似 g
-            g2 = ctx2(
-                g.list(0, m)
-            )
+            # Newton:
+            #
+            # result_new
+            #   = result - (result^2 - source)/(2 result)
+            #
+            for i in range(length, upper):
+                result[i] = (
+                    -delta[i]
+                    * inverse_double_length
+                    % mod
+                    * inv2
+                    % mod
+                )
 
-            # log(g)
-            log_g = g2.log()
+            # No more coefficients are needed.
+            if double_length >= size:
+                break
 
-            # 1 - log(g) + f
-            correction = (
-                ctx2.one()
-                - log_g
-                + f2
-            )
+            # ==================================================
+            # Extend result^{-1}.
+            #
+            # We want:
+            #
+            # inverse * result = 1
+            #
+            # and update inverse by Newton iteration.
+            # ==================================================
+            transformed_result = result[:double_length]
 
-            # g <- g * (1 - log(g) + f)
-            g = (
-                g2 * correction
-            ).truncate(m2)
+            butterfly(transformed_result)
 
-            m = m2
+            error = [
+                transformed_result[i]
+                * transformed_inverse[i]
+                % mod
+                for i in range(double_length)
+            ]
 
+            butterfly_inv(error)
+
+            # Low coefficients already satisfy inverse * result = 1.
+            for i in range(length):
+                error[i] = 0
+
+            for i in range(length, double_length):
+                error[i] = (
+                    error[i]
+                    * inverse_double_length
+                    % mod
+                )
+
+            butterfly(error)
+
+            for i in range(double_length):
+                error[i] = (
+                    error[i]
+                    * transformed_inverse[i]
+                    % mod
+                )
+
+            butterfly_inv(error)
+
+            for i in range(length, double_length):
+                inverse[i] = (
+                    -error[i]
+                    * inverse_double_length
+                    % mod
+                )
+
+            length = double_length
+            inverse_length = inverse_double_length
+
+        # Restore x^(leading / 2).
         return FPS(
             self.ctx,
-            g.list(0, n),
+            [0] * shift + result,
         )
 
     # ------------------------------------------------------------
@@ -1339,7 +1841,7 @@ class FPS:
         if r < 0:
             r += self.ctx.n
 
-        if not (0 <= l <= r <= self.ctx.n):
+        if not (0 <= l <= r):
             raise IndexError(
                 "FPS coefficient slice out of range"
             )
