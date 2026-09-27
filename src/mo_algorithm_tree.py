@@ -1,7 +1,7 @@
 # name: Mo's Algorithm on Tree
 # prefix: mo_tree
 # ---
-class MinSparseTable: # 中身はDisjointSparseTable。セグ木に乗るものなら何でも乗る。
+class MinSparseTable:
     n: int
     log: int
     data: list[int]
@@ -164,26 +164,29 @@ class MoTreeSolver:
 1. 宣言
 Mo = MoTreeSolver(N)
 
-2. 木の辺追加
+2. u-v間を結ぶ木の辺を追加
 Mo.add_edge(u, v)
 
 3. 木をビルドする
 Mo.build
 
-4. パスクエリを登録する
+4. u-v間のパスクエリを登録する
 Mo.add_path_query(u, v)
 
-5. add(i)
+5. add(i)の実装
 頂点iを追加する時の操作
 
-6. erase(i)
+6. erase(i)の実装
 頂点iを削除する時の操作
 
-7. answer(qi)
+7. answer(qi)の実装
 クエリqiの答えを返す
 
 8. solveを呼ぶ
 ans = Mo.solve(add, erase, answer)
+
+実装例: ABC477_G
+https://atcoder.jp/contests/abc477/submissions/79594833
 """
 
 # def add(i):
