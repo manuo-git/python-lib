@@ -22,7 +22,6 @@ def convolution_int(a: list[int], b: list[int]) -> list[int]:
 
     p1 = 998244353
     p2 = 1004535809
-    root = 3
 
     size = 1 << (need - 1).bit_length()
     if size > (1 << 21):
@@ -30,6 +29,7 @@ def convolution_int(a: list[int], b: list[int]) -> list[int]:
 
 
     def ntt(f, invert, mod):
+        root = 3
         n = len(f)
 
         j = 0
