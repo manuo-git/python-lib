@@ -5,6 +5,7 @@
             "aho corasick"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/aho_corasick.py",
             "# https://atcoder.jp/contests/abc419/editorial/13623",
             "class AhoCorasick:",
             "    def __init__(self, sigma=26):",
@@ -55,6 +56,7 @@
             "area of union of rectangles"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/area_of_union_of_rectangles.py",
             "# https://atcoder.jp/contests/abc449/submissions/74125516",
             "class UnionOfLines:",
             "    def __init__(self,n, width=None):",
@@ -172,6 +174,7 @@
             "argsort"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/arg_sort.py",
             "from typing import *",
             "def sort(data: List[Any], cmp):",
             "    if len(data) == 1: return",
@@ -245,6 +248,7 @@
             "bellmanford"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/bellman_ford.py",
             "class BellmanFord:",
             "    INF = 1 << 60",
             "",
@@ -324,6 +328,7 @@
             "binary trie"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/binary_trie.py",
             "class BinaryTrie:",
             "    NODES = 16777216 # 480MB memory",
             "",
@@ -458,6 +463,7 @@
             "bitset"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/bitset.py",
             "MAXBIT = $1",
             "WORD = 60",
             "WORDS = (MAXBIT + WORD-1) // WORD",
@@ -608,6 +614,7 @@
             "subsetbit"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/bit_subset.py",
             "class subset:",
             "    def __init__(self, bi):",
             "        self.bi = bi",
@@ -627,6 +634,7 @@
             "bridge check"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/bridge_check.py",
             "def find_bridges(n, edges):",
             "    \"\"\"",
             "    n: 頂点数",
@@ -671,6 +679,7 @@
             "bucketlist"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/bucket_list.py",
             "# https://github.com/tatyam-prime/SortedSet/blob/main/BucketList.py",
             "import math",
             "from typing import Generic, Iterable, Iterator, TypeVar",
@@ -800,6 +809,7 @@
             "centroids"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/centroids.py",
             "def get_centroids(N: int, edge: list[list[int]]) -> list[int]:",
             "    \"\"\"木の重心を求める (O(N))",
             "    ",
@@ -841,6 +851,7 @@
             "cmp to key"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/cmp_to_key.py",
             "from typing import *",
             "def sort(data: list[Any], cmp):",
             "    if len(data) == 1: return",
@@ -879,6 +890,7 @@
             "comb"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/comb.py",
             "# O(NMAX)。MODが素数じゃないときは二次元配列を作ってO(NMAX^2)で求める。",
             "# comb2を参照",
             "NMAX = 1000000",
@@ -904,6 +916,7 @@
             "comb2"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/comb2.py",
             "# O(NMAX^2)",
             "NMAX = $1",
             "MOD = $2",
@@ -923,6 +936,7 @@
             "convexhull"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/convex_hull.py",
             "# https://atcoder.jp/contests/awc0103/editorial/22410",
             "def sub(p1, p2):",
             "    return (p1[0]-p2[0], p1[1]-p2[1])",
@@ -967,6 +981,7 @@
             "convolution"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/convolution.py",
             "# https://judge.yosupo.jp/submission/55648",
             "# AtCoder Libary v1.4 を python に移植したもの",
             "# https://github.com/atcoder/ac-library/blob/master/atcoder/convolution.hpp",
@@ -1093,6 +1108,7 @@
             "cum2d"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/cum_2d.py",
             "class cum2D:",
             "    def __init__(self, grid):",
             "        self.n = len(grid)",
@@ -1113,6 +1129,7 @@
             "cumkd"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/cum_kd.py",
             "class cumKD:",
             "    def __init__(self, k: int, *lim):",
             "        self.k = k",
@@ -1274,6 +1291,7 @@
             "divisor"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/divisor.py",
             "def div(num):",
             "    left = []",
             "    right = []",
@@ -1293,6 +1311,7 @@
             "doubling"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/doubling.py",
             "class Doubling:",
             "    def __init__(self, op, e, p, v, log = 60):",
             "        assert len(p) == len(v)",
@@ -1344,6 +1363,7 @@
             "doubling list"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/doubling_list.py",
             "# B_i <- A_x_i",
             "def f(x, p): # O(NlogP) 使いまわすなら真面目に",
             "    n = len(x)",
@@ -1363,6 +1383,7 @@
             "doubling_o(n)"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/doubling_o(n).py",
             "def f(x, p, si):",
             "    i = si",
             "    size = len(x)",
@@ -1390,6 +1411,7 @@
             "edsu"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/edsu.py",
             "from atcoder.dsu import DSU",
             "class EDSU(DSU):",
             "    _edge_sum: list[int]",
@@ -1420,6 +1442,7 @@
             "extgcd"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/extgcd.py",
             "def extgcd(a, b) -> tuple[int, int]:",
             "    if b == 0: return 1, 0",
             "    y, x = extgcd(b, a%b)",
@@ -1433,6 +1456,7 @@
             "factor"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/factor.py",
             "FACMAX = $1",
             "FAC = [0]*(FACMAX+1)",
             "PRIME = []",
@@ -1476,6 +1500,7 @@
             "factor big"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/factor_big.py",
             "# [(x1, c1), (x2, c2) ... (xk, ck)]",
             "# X = x1^c1 * x2^c2 * ... * xk^ck",
             "def factor(X):",
@@ -1505,6 +1530,7 @@
             "fenwicktreemod"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/fenwick_tree_mod.py",
             "class FenwickTreeMOD(FenwickTree):",
             "    mod: int",
             "    def __init__(self, n: int = 0, mod: int = 0) -> None:",
@@ -1538,6 +1564,7 @@
             "floorsum"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/floor_sum.py",
             "# https://atcoder.jp/contests/abc443/editorial/15138",
             "def floor_sum(n, m, a, b):",
             "    a1, a2 = a//m, a%m",
@@ -1554,6 +1581,7 @@
             "floydwarshall"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/floyd_warshall.py",
             "class FloydWarshall:",
             "    INF = 1<<60",
             "    _n: int",
@@ -1632,6 +1660,7 @@
             "fps"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/fps.py",
             "from dataclasses import dataclass, field",
             "from typing import Iterable, Union",
             "",
@@ -3500,6 +3529,7 @@
             "functionalgraph"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/functional_graph.py",
             "class FunctionalGraph:",
             "    _n: int",
             "    loop_id: int",
@@ -3594,6 +3624,7 @@
             "graph"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/graph.py",
             "import heapq",
             "import collections",
             "MEMORY_CAP: int = 130000",
@@ -3747,6 +3778,7 @@
             "flip"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/grid_flip.py",
             "def flip(G):",
             "    h, w = len(G), len(G[0])",
             "    nG = [[0]*w for _ in range(h)]",
@@ -3762,6 +3794,7 @@
             "leftup"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/grid_leftup.py",
             "def leftup(G, white = \".\"):",
             "    h, w = len(G), len(G[0])",
             "    si, sj = h, w",
@@ -3783,6 +3816,7 @@
             "rotate"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/grid_rotate.py",
             "def rotate(G, left = True):",
             "    # 反時計周り",
             "    if left:",
@@ -3807,6 +3841,7 @@
             "hld"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/hld.py",
             "class HLD:",
             "    n: int",
             "    edges: list[list[tuple[int, int]]]",
@@ -4407,6 +4442,7 @@
             "imos2d"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/imos_2d.py",
             "class imos2D:",
             "    def __init__(self, n, m):",
             "        self.n = n",
@@ -4526,6 +4562,7 @@
             "is_prime"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/is_prime.py",
             "BASE = [",
             "    2404423, 3027617, 3715179, 3264583, 1593555, 5853461, 1552463, 1896881, 2904107, 5600043, 1356087, 2044251, 290821, 1150981, 1642719, 3076389, 667689, 2650251, 1200327, 1724421, 4133355, 4494151, 1151005, 2674735, 2404773, 667731, 249897, 2904087, 1257551, 1298703, 815165, 241669, 987333, 1839543, 1101997, 151581, 2216193, 3314043, 3387621, 1503569, 1569019, 2674851, 2429437, 2798241, 1380357, 421955, 2330647, 1716501, 1101973, 2757207, 1200199, 3395643, 987153, 1257519, 2945595, 1994825, 1642879, 1716607, 1470537, 274473, 5034585, 2707899, 741477, 2871903, 323643, 1052677, 1503513, 1110213, 3371237, 864345, 5157741, 2830397, 4723085, 1896521, 3518631, 913487, 2674725, 1274089, 1445893, 397317, 2650461, 462937, 2535471, 815171, 1150993, 299037, 1675281, 2011285, 1273861, 2281743, 290821, 4305755, 1552533, 2945205, 1282185, 2625573, 339999, 1028275, 1429797, 217093,",
             "    4133591, 1110033, 3150567, 1913109, 274445, 3322029, 1995003, 1527957, 954595, 979071, 446495, 1896509, 987327, 1642501, 3617519, 733323, 979101, 3314187, 1298503, 2535857, 1642555, 1052715, 3371339, 4084005, 1445941, 782425, 979047, 1200307, 1527851, 1888713, 2084869, 618609, 1552551, 520199, 1052865, 987141, 1527935, 1052679, 1593367, 1028323, 815117, 913421, 1159239, 1445929, 2584925, 1200391, 929895, 1839183, 1642585, 1888263, 979071, 364617, 520301, 4133525, 4714863, 3510373, 3535449, 2281935, 790629, 1724799, 3363279, 3150287, 1355829, 2043957, 4059165, 569475, 1888603, 618627, 274485, 1028233, 667695, 274463, 1626363, 3100901, 2454075, 217129, 397335, 1298485, 806915, 1110087, 1151085, 1642569, 4182525, 413733, 2085231, 1028289, 987285, 1200265, 569397, 438331, 1896587, 2797941, 618507, 913599, 2281475, 1282221, 3518661, 3002625, 1896453, 1896699,",
@@ -4737,6 +4774,7 @@
             "knuth_yao"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/knuth_yao.py",
             "def Knuth_Yao(N, op):",
             "    opt = [[0]*(2*N+1) for _ in range(2*N+1)]",
             "    for i in range(1, 2*N+1):",
@@ -4765,6 +4803,7 @@
             "lca"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/lca.py",
             "from typing import List, Tuple",
             "class LCA:",
             "    \"\"\"ダブリングを用いた最小共通祖先 (LCA) 計算ライブラリ。",
@@ -5040,6 +5079,7 @@
             "lca_fast"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/lca_fast.py",
             "class SparseTable: # 中身はDisjointSparseTable。セグ木に乗るものなら何でも乗る。",
             "    def __init__(self, op, e, v):",
             "        self.n = len(v)",
@@ -5165,6 +5205,7 @@
             "lcs"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/lcs.py",
             "def LCS(s, t): # O(|s|*|t|)",
             "    N = len(s)",
             "    M = len(t)",
@@ -5184,6 +5225,7 @@
             "linesegment"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/line_segment.py",
             "def calcline(x1, y1, x2, y2):",
             "    p = x1-x2",
             "    q = y1-y2",
@@ -5207,6 +5249,7 @@
             "lis"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/lis.py",
             "from bisect import bisect_left",
             "def lis(A):",
             "    if len(A) == 0: return 0",
@@ -5254,6 +5297,7 @@
             "lucydp"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/lucydp.py",
             "# https://qiita.com/masa0599/items/2704047579eaafb2a322",
             "# N以下の素数の数を数える",
             "def lucydp(num): # O(√N)",
@@ -5438,6 +5482,7 @@
             "macro_interactive"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/macro_interactive.py",
             "from collections import deque, defaultdict, Counter",
             "from bisect import bisect_left, bisect_right",
             "from itertools import permutations, combinations, groupby",
@@ -5531,6 +5576,7 @@
             "matrixpow"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/matrix_pow.py",
             "class MatrixPow:",
             "    def __init__(self, add, zero, mul, one, mat):",
             "        h = len(mat)",
@@ -5704,6 +5750,7 @@
             "mergesorttree"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/merge_sort_tree.py",
             "from bisect import bisect_right, bisect_left",
             "from itertools import accumulate",
             "",
@@ -5915,6 +5962,7 @@
             "mo"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/mo_algorithm.py",
             "class MoSolver:",
             "    n: int",
             "    q: int",
@@ -5964,6 +6012,7 @@
             "mo_tree"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/mo_algorithm_tree.py",
             "class MinSparseTable:",
             "    n: int",
             "    log: int",
@@ -6188,6 +6237,7 @@
             "pdsu"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/pdsu.py",
             "from typing import *",
             "from atcoder.dsu import DSU",
             "class PDSU(DSU):",
@@ -6268,6 +6318,7 @@
             "persistant lazysegtree"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/persistant_lazysegtree.py",
             "class Node[T, F]:",
             "    l: Node[T, F]",
             "    r: Node[T, F]",
@@ -6537,6 +6588,7 @@
             "persistant segtree"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/persistant_segtree.py",
             "class Node[T]:",
             "    l: Node[T]",
             "    r: Node[T]",
@@ -6740,6 +6792,7 @@
             "prevpermutations"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/prev_permutations.py",
             "def prev_permutations(li):",
             "    n = len(li)",
             "    for i in reversed(range(1, n)):",
@@ -6765,6 +6818,7 @@
             "prime"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/prime.py",
             "def prime(num):",
             "    num = int(num)",
             "    p = []",
@@ -6785,6 +6839,7 @@
             "qinput"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/query_input.py",
             "def ctypes(li, types):",
             "    assert len(li) == len(types)",
             "    return [t(a) for a, t in zip(li, types)]",
@@ -6802,6 +6857,7 @@
             "rangeset"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/range_set.py",
             "# https://github.com/tatyam-prime/SortedSet/blob/main/SortedMultiset.py",
             "import math",
             "from bisect import bisect_left, bisect_right",
@@ -7110,6 +7166,7 @@
             "rdsu"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/rdsu.py",
             "from atcoder.dsu import DSU",
             "class RollbackDSU(DSU):",
             "    def __init__(self, n: int = 0) -> None:",
@@ -7163,6 +7220,7 @@
             "rerooting"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/re_rooting.py",
             "class ReRooting[T, F, G]:",
             "    _n: int",
             "    _E: list[list[int]]",
@@ -7242,6 +7300,7 @@
             "rollinghash"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/rolling_hash.py",
             "class FenwickTreeMOD():",
             "    mod: int",
             "    def __init__(self, n: int, mod: int) -> None:",
@@ -7369,6 +7428,7 @@
             "prdsu"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/rpdsu.py",
             "from atcoder.dsu import DSU",
             "class RollbackPDSU(DSU):",
             "    def __init__(self, n: int = 0, ",
@@ -7460,6 +7520,8 @@
             "scc"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/scc.py",
+            "# https://github.com/shakayami/ACL-for-python/blob/master/scc.py",
             "# edges = [(u1, v1), (u2, v2), ... ,(uM, vM)]",
             "def scc(N,edges):",
             "    M=len(edges)",
@@ -7529,6 +7591,7 @@
             "segtree2d"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/segtree_2d.py",
             "import math, sys",
             "def gcd(x: int, y: int) -> int:",
             "    return gcd(y, x % y) if y else abs(x)",
@@ -7684,6 +7747,7 @@
             "segtreebeats"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/segtree_beats.py",
             "import sys",
             "sys.setrecursionlimit(10**6)",
             "",
@@ -7992,6 +8056,7 @@
             "sortedmultiset"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/sorted_multi_set.py",
             "# https://github.com/tatyam-prime/SortedSet/blob/main/SortedMultiset.py",
             "import math",
             "from bisect import bisect_left, bisect_right",
@@ -8148,6 +8213,7 @@
             "sortedset"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/sorted_set.py",
             "# https://github.com/tatyam-prime/SortedSet/blob/main/SortedSet.py",
             "import math",
             "from bisect import bisect_left, bisect_right",
@@ -8308,6 +8374,7 @@
             "sparsetable"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/sparse_table.py",
             "class SparseTable: # 中身はDisjointSparseTable。セグ木に乗るものなら何でも乗る。",
             "    def __init__(self, op, e, v):",
             "        self.n = len(v)",
@@ -8365,6 +8432,7 @@
             "sum_floor"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/sum_floor.py",
             "# sum(N//b for b in range(1, N+1))",
             "def sum_floor(N, MOD): # O(√N)",
             "    res = 0",
@@ -8393,6 +8461,7 @@
             "top2"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/top2.py",
             "NEG_INF = -(1<<60)",
             "class Top2:",
             "    mx1: int",
@@ -8465,6 +8534,7 @@
             "topk"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/topk.py",
             "class TopK:",
             "    mx: list[int]",
             "    k: int",
@@ -8514,6 +8584,7 @@
             "topologicalsort"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/topological_sort.py",
             "def tplgsort(N, E):",
             "    incnt = [0]*N",
             "    for i in range(N):",
@@ -8540,6 +8611,7 @@
             "tousa"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/tousa.py",
             "# t: 0 -> tousa_wa(初項, 末項, 項数)",
             "# t: 1 -> tousa_wa(初項, 末項, 公差, 1)",
             "# t: 2 -> tousa_wa(初項, 公差, 項数, 2)",
@@ -8561,6 +8633,7 @@
             "trie"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/trie.py",
             "nxt = [{}]",
             "node = [0]",
             "",
@@ -8619,6 +8692,7 @@
             "vector"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/vector.py",
             "import math",
             "def cross(p1, p2):",
             "    x1, y1 = p1",
@@ -8658,6 +8732,7 @@
             "wavelet matrix"
         ],
         "body": [
+            "# https://github.com/manuo-git/python-lib/blob/main/src/wavelet_matrix.py",
             "class WaveletMatrix:",
             "    _log: int",
             "    _n: int",
