@@ -1,2 +1,12 @@
-if you can read me, this is read me.
-[![verify](https://github.com/manuo-git/python-lib/actions/workflows/verify.yml/badge.flow.svg)](https://github.com/manuo-git/python-lib/actions/workflows/verify.yml)
+manuoによる競プロ用のPythonライブラリです。
+
+窃盗の際はライセンスを確認してください。
+
+```python
+# name: Aho-Corasick
+# prefix: aho corasick
+# ---
+```
+
+ファイル冒頭のこの部分はsnippet作成用のヘッダーです。
+コピーして使う場合は無視してください。
