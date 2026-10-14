@@ -1,6 +1,7 @@
 # name: Doubling List
 # prefix: doubling list
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/doubling_list.py
 # B_i <- A_x_i
 def f(x, p): # O(NlogP) 使いまわすなら真面目に
     n = len(x)

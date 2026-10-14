@@ -1,6 +1,7 @@
 # name: Centroids
 # prefix: centroids
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/centroids.py
 def get_centroids(N: int, edge: list[list[int]]) -> list[int]:
     """木の重心を求める (O(N))
     

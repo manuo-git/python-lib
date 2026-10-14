@@ -1,6 +1,7 @@
 # name: Sorted Set
 # prefix: sortedset
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/sorted_set.py
 # https://github.com/tatyam-prime/SortedSet/blob/main/SortedSet.py
 import math
 from bisect import bisect_left, bisect_right

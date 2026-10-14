@@ -1,6 +1,7 @@
 # name: Bridge Check
 # prefix: bridge check
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/bridge_check.py
 def find_bridges(n, edges):
     """
     n: 頂点数

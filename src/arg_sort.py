@@ -1,6 +1,7 @@
 # name: Arg Sort
 # prefix: argsort
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/arg_sort.py
 from typing import *
 def sort(data: List[Any], cmp):
     if len(data) == 1: return

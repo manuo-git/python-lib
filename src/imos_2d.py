@@ -1,6 +1,7 @@
 # name: Imos 2D
 # prefix: imos2d
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/imos_2d.py
 class imos2D:
     def __init__(self, n, m):
         self.n = n

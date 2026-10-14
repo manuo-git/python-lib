@@ -1,6 +1,7 @@
 # name: Sum of a Floor Sequence
 # prefix: sum_floor
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/sum_floor.py
 # sum(N//b for b in range(1, N+1))
 def sum_floor(N, MOD): # O(√N)
     res = 0

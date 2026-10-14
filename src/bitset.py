@@ -1,6 +1,7 @@
 # name: Bit Set
 # prefix: bitset
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/bitset.py
 MAXBIT = $1
 WORD = 60
 WORDS = (MAXBIT + WORD-1) // WORD

@@ -1,6 +1,7 @@
 # name: Factor
 # prefix: factor
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/factor.py
 FACMAX = $1
 FAC = [0]*(FACMAX+1)
 PRIME = []

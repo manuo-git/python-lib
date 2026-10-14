@@ -1,6 +1,7 @@
 # name: Persistant SegTree
 # prefix: persistant segtree
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/persistant_segtree.py
 class Node[T]:
     l: Node[T]
     r: Node[T]

@@ -1,6 +1,7 @@
 # name: Query Input
 # prefix: qinput
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/query_input.py
 def ctypes(li, types):
     assert len(li) == len(types)
     return [t(a) for a, t in zip(li, types)]

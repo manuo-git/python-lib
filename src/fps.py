@@ -1,6 +1,7 @@
 # name: FPS
 # prefix: fps
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/fps.py
 from dataclasses import dataclass, field
 from typing import Iterable, Union
 

@@ -1,6 +1,7 @@
 # name: Convex Hull
 # prefix: convexhull
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/convex_hull.py
 # https://atcoder.jp/contests/awc0103/editorial/22410
 def sub(p1, p2):
     return (p1[0]-p2[0], p1[1]-p2[1])

@@ -1,6 +1,7 @@
 # name: Bucket List
 # prefix: bucketlist
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/bucket_list.py
 # https://github.com/tatyam-prime/SortedSet/blob/main/BucketList.py
 import math
 from typing import Generic, Iterable, Iterator, TypeVar

@@ -1,6 +1,7 @@
 # name: Mo's Algorithm
 # prefix: mo
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/mo_algorithm.py
 class MoSolver:
     n: int
     q: int

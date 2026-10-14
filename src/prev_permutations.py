@@ -1,6 +1,7 @@
 # name: Prev Permutations
 # prefix: prevpermutations
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/prev_permutations.py
 def prev_permutations(li):
     n = len(li)
     for i in reversed(range(1, n)):

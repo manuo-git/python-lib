@@ -1,6 +1,7 @@
 # name: Binary Trie
 # prefix: binary trie
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/binary_trie.py
 class BinaryTrie:
     NODES = 16777216 # 480MB memory
 

@@ -1,6 +1,7 @@
 # name: Trie
 # prefix: trie
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/trie.py
 nxt = [{}]
 node = [0]
 

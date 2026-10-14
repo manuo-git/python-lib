@@ -1,6 +1,7 @@
 # name: Sum of a Geometric Sequence
 # prefix: tousa
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/tousa.py
 # t: 0 -> tousa_wa(初項, 末項, 項数)
 # t: 1 -> tousa_wa(初項, 末項, 公差, 1)
 # t: 2 -> tousa_wa(初項, 公差, 項数, 2)

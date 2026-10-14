@@ -1,6 +1,7 @@
 # name: Re Rooting DP
 # prefix: rerooting
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/re_rooting.py
 class ReRooting[T, F, G]:
     _n: int
     _E: list[list[int]]

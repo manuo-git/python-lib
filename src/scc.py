@@ -1,6 +1,8 @@
 # name: SCC
 # prefix: scc
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/scc.py
+# https://github.com/shakayami/ACL-for-python/blob/master/scc.py
 # edges = [(u1, v1), (u2, v2), ... ,(uM, vM)]
 def scc(N,edges):
     M=len(edges)

@@ -1,6 +1,7 @@
 # name: Area of Union of Rectangles
 # prefix: area of union of rectangles
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/area_of_union_of_rectangles.py
 # https://atcoder.jp/contests/abc449/submissions/74125516
 class UnionOfLines:
     def __init__(self,n, width=None):

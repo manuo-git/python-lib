@@ -1,6 +1,7 @@
 # name: Prime
 # prefix: prime
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/prime.py
 def prime(num):
     num = int(num)
     p = []

@@ -1,6 +1,7 @@
 # name: Rolling Hash
 # prefix: rollinghash
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/rolling_hash.py
 class FenwickTreeMOD():
     mod: int
     def __init__(self, n: int, mod: int) -> None:

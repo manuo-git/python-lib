@@ -1,6 +1,7 @@
 # name: Bellman-Ford
 # prefix: bellmanford
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/bellman_ford.py
 class BellmanFord:
     INF = 1 << 60
 

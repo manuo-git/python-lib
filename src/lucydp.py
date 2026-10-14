@@ -1,6 +1,7 @@
 # name: Lucy DP
 # prefix: lucydp
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/lucydp.py
 # https://qiita.com/masa0599/items/2704047579eaafb2a322
 # N以下の素数の数を数える
 def lucydp(num): # O(√N)

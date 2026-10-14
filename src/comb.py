@@ -1,6 +1,7 @@
 # name: Combination
 # prefix: comb
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/comb.py
 # O(NMAX)。MODが素数じゃないときは二次元配列を作ってO(NMAX^2)で求める。
 # comb2を参照
 NMAX = 1000000

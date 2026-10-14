@@ -1,6 +1,7 @@
 # name: Vector
 # prefix: vector
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/vector.py
 import math
 def cross(p1, p2):
     x1, y1 = p1

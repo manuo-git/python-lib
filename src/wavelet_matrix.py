@@ -1,6 +1,7 @@
 # name: Wavelet Matrix
 # prefix: wavelet matrix
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/wavelet_matrix.py
 class WaveletMatrix:
     _log: int
     _n: int

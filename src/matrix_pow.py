@@ -1,6 +1,7 @@
 # name: Matrix Pow
 # prefix: matrixpow
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/matrix_pow.py
 class MatrixPow:
     def __init__(self, add, zero, mul, one, mat):
         h = len(mat)

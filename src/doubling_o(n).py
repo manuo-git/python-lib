@@ -1,6 +1,7 @@
 # name: Doubling O(N)
 # prefix: doubling_o(n)
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/doubling_o(n).py
 def f(x, p, si):
     i = si
     size = len(x)

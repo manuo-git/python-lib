@@ -1,6 +1,7 @@
 # name: Persistant LazySegTree
 # prefix: persistant lazysegtree
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/persistant_lazysegtree.py
 class Node[T, F]:
     l: Node[T, F]
     r: Node[T, F]

@@ -1,6 +1,7 @@
 # name: Convolution998
 # prefix: convolution
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/convolution.py
 # https://judge.yosupo.jp/submission/55648
 # AtCoder Libary v1.4 を python に移植したもの
 # https://github.com/atcoder/ac-library/blob/master/atcoder/convolution.hpp

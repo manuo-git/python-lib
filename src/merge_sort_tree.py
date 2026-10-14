@@ -1,6 +1,7 @@
 # name: Merge Sort Tree
 # prefix: mergesorttree
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/merge_sort_tree.py
 from bisect import bisect_right, bisect_left
 from itertools import accumulate
 

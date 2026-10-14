@@ -1,6 +1,7 @@
 # name: Cum 2D
 # prefix: cum2d
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/cum_2d.py
 class cum2D:
     def __init__(self, grid):
         self.n = len(grid)

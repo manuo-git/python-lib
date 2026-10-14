@@ -1,6 +1,7 @@
 # name: LCS
 # prefix: lcs
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/lcs.py
 def LCS(s, t): # O(|s|*|t|)
     N = len(s)
     M = len(t)

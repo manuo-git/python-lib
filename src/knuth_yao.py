@@ -1,6 +1,7 @@
 # name: Knuth-Yao
 # prefix: knuth_yao
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/knuth_yao.py
 def Knuth_Yao(N, op):
     opt = [[0]*(2*N+1) for _ in range(2*N+1)]
     for i in range(1, 2*N+1):

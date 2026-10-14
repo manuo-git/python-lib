@@ -1,6 +1,7 @@
 # name: Rollback Potential DSU
 # prefix: rpdsu, prdsu
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/rpdsu.py
 from atcoder.dsu import DSU
 class RollbackPDSU(DSU):
     def __init__(self, n: int = 0, 

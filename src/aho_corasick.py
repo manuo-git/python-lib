@@ -1,6 +1,7 @@
 # name: Aho-Corasick
 # prefix: aho corasick
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/aho_corasick.py
 # https://atcoder.jp/contests/abc419/editorial/13623
 class AhoCorasick:
     def __init__(self, sigma=26):

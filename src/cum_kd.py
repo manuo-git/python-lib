@@ -1,6 +1,7 @@
 # name: Cum KD
 # prefix: cumkd
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/cum_kd.py
 class cumKD:
     def __init__(self, k: int, *lim):
         self.k = k

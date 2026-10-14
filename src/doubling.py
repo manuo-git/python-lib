@@ -1,6 +1,7 @@
 # name: Doubling
 # prefix: doubling
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/doubling.py
 class Doubling:
     def __init__(self, op, e, p, v, log = 60):
         assert len(p) == len(v)

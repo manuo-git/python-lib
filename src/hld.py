@@ -1,6 +1,7 @@
 # name: HLD
 # prefix: hld
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/hld.py
 class HLD:
     n: int
     edges: list[list[tuple[int, int]]]

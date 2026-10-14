@@ -1,6 +1,7 @@
 # name: Combination2
 # prefix: comb2
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/comb2.py
 # O(NMAX^2)
 NMAX = $1
 MOD = $2

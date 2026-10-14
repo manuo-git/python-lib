@@ -1,6 +1,7 @@
 # name: LIS
 # prefix: lis
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/lis.py
 from bisect import bisect_left
 def lis(A):
     if len(A) == 0: return 0

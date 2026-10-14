@@ -1,6 +1,7 @@
 # name: Divisor
 # prefix: divisor
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/divisor.py
 def div(num):
     left = []
     right = []

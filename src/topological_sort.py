@@ -1,6 +1,7 @@
 # name: Topological Sort
 # prefix: topologicalsort
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/topological_sort.py
 def tplgsort(N, E):
     incnt = [0]*N
     for i in range(N):

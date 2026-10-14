@@ -1,6 +1,7 @@
 # name: Top2
 # prefix: top2
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/top2.py
 NEG_INF = -(1<<60)
 class Top2:
     mx1: int

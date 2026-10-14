@@ -1,6 +1,7 @@
 # name: Fenwick Tree MOD
 # prefix: fenwicktreemod
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/fenwick_tree_mod.py
 class FenwickTreeMOD(FenwickTree):
     mod: int
     def __init__(self, n: int = 0, mod: int = 0) -> None:

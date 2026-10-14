@@ -1,6 +1,7 @@
 # name: Factor Big
 # prefix: factor big
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/factor_big.py
 # [(x1, c1), (x2, c2) ... (xk, ck)]
 # X = x1^c1 * x2^c2 * ... * xk^ck
 def factor(X):

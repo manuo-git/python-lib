@@ -1,6 +1,7 @@
 # name: SegTree 2D
 # prefix: segtree2d
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/segtree_2d.py
 import math, sys
 def gcd(x: int, y: int) -> int:
     return gcd(y, x % y) if y else abs(x)

@@ -1,6 +1,7 @@
 # name: LCA O(1)
 # prefix: lca_fast
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/lca_fast.py
 class SparseTable: # 中身はDisjointSparseTable。セグ木に乗るものなら何でも乗る。
     def __init__(self, op, e, v):
         self.n = len(v)

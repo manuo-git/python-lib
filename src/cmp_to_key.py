@@ -1,6 +1,7 @@
 # name: Cmp to Key
 # prefix: cmp to key
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/cmp_to_key.py
 from typing import *
 def sort(data: list[Any], cmp):
     if len(data) == 1: return

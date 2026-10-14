@@ -1,6 +1,7 @@
 # name: Bit Subset
 # prefix: subsetbit
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/bit_subset.py
 class subset:
     def __init__(self, bi):
         self.bi = bi

@@ -1,6 +1,7 @@
 # name: Floor Sum
 # prefix: floorsum
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/floor_sum.py
 # https://atcoder.jp/contests/abc443/editorial/15138
 def floor_sum(n, m, a, b):
     a1, a2 = a//m, a%m

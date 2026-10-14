@@ -1,6 +1,7 @@
 # name: Grid Left Up
 # prefix: leftup
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/grid_leftup.py
 def leftup(G, white = "."):
     h, w = len(G), len(G[0])
     si, sj = h, w

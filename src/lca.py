@@ -1,6 +1,7 @@
 # name: LCA
 # prefix: lca
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/lca.py
 from typing import List, Tuple
 class LCA:
     """ダブリングを用いた最小共通祖先 (LCA) 計算ライブラリ。

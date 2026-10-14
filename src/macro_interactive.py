@@ -1,6 +1,7 @@
 # name: Interactive Macro
 # prefix: macro_interactive
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/macro_interactive.py
 from collections import deque, defaultdict, Counter
 from bisect import bisect_left, bisect_right
 from itertools import permutations, combinations, groupby

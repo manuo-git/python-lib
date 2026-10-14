@@ -1,6 +1,7 @@
 # name: Functional Graph
 # prefix: functionalgraph
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/functional_graph.py
 class FunctionalGraph:
     _n: int
     loop_id: int

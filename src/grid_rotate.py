@@ -1,6 +1,7 @@
 # name: Grid Rotate
 # prefix: rotate
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/grid_rotate.py
 def rotate(G, left = True):
     # 反時計周り
     if left:

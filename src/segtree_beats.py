@@ -1,6 +1,7 @@
 # name: SegTree Beats
 # prefix: segtreebeats
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/segtree_beats.py
 import sys
 sys.setrecursionlimit(10**6)
 

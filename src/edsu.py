@@ -1,6 +1,7 @@
 # name: Edge DSU
 # prefix: edsu
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/edsu.py
 from atcoder.dsu import DSU
 class EDSU(DSU):
     _edge_sum: list[int]

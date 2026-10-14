@@ -1,6 +1,7 @@
 # name: Floyd-Warshall
 # prefix: floydwarshall
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/floyd_warshall.py
 class FloydWarshall:
     INF = 1<<60
     _n: int

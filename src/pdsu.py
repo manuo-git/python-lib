@@ -1,6 +1,7 @@
 # name: Potential DSU
 # prefix: pdsu
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/pdsu.py
 from typing import *
 from atcoder.dsu import DSU
 class PDSU(DSU):

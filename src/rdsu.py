@@ -1,6 +1,7 @@
 # name: Rollback DSU
 # prefix: rdsu
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/rdsu.py
 from atcoder.dsu import DSU
 class RollbackDSU(DSU):
     def __init__(self, n: int = 0) -> None:

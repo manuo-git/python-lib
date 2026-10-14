@@ -1,6 +1,7 @@
 # name: Line Segments
 # prefix: linesegment
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/line_segment.py
 def calcline(x1, y1, x2, y2):
     p = x1-x2
     q = y1-y2

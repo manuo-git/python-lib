@@ -1,6 +1,7 @@
 # name: Mo's Algorithm on Tree
 # prefix: mo_tree
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/mo_algorithm_tree.py
 class MinSparseTable:
     n: int
     log: int
