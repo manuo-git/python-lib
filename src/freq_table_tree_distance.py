@@ -1,6 +1,7 @@
 # name: Freq Table Tree Distance
 # prefix: freq_table_tree_distance
 # ---
+# https://github.com/manuo-git/python-lib/blob/main/src/freq_table_tree_distance.py
 def convolution_int(a: list[int], b: list[int]) -> list[int]:
     """非負整数配列の正確な整数畳み込み。"""
     if not a or not b:
