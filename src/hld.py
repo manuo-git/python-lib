@@ -212,6 +212,10 @@ class HLD:
         """
         lca = self.get_lca(u, v)
         return self.depth[u] + self.depth[v] - 2 * self.depth[lca]
+
+    def edge_to_vid(self, i: int) -> int:
+        assert 0 <= i < self.n-1
+        return self.vid[self.edge_to_child[i]]
     
     def path_sections(self, u: int, v: int, edge: bool = False):
         """
