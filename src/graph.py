@@ -62,52 +62,61 @@ class Graph:
                 self._bf[j] = i
                 heapq.heappush(q, tc<<self.shift | j)
     
-    # https://tjkendev.github.io/procon-library/python/graph/dial.html
-    def dials_algorithm(self, start: int) -> None:
-        assert 0 <= start < self._n
+    def dials_algorithm(self, start: int, next_func) -> None:
+        n = self._n
+        S = self._max_cost+1
         self._init_data()
-        _m = self._n*self._max_cost
-        B = [-1]*(_m + 1) # first
-        L = [-1]*(_m + 1) # last
-
-        *prv, = range(-1, self._n-1)
-        *nxt, = range(1, self._n+1)
-
-        nxt[-1] = -1
-        if start < self._n-1: prv[start+1] = (start-1 if start > 0 else -1)
-        if start > 0: nxt[start-1] = (start+1 if start < self._n-1 else -1)
-        prv[start] = nxt[start] = -1
-        B[0] = L[0] = start
-        B[_m] = (1 if start == 0 else 0)
-        L[_m] = (self._n-1 if start < self._n-1 else self._n-2)
-        
-        self._dist[start] = 0
+        dist = self._dist
+        vis = self._vis
+        bf = self._bf
+        B = [-1] * S
+        prv = [-1] * n
+        nxt = [-1] * n
+        slot = [0] * n
+        dist[start] = 0
+        B[0] = start
         self._last_start = start
-        for w in range(_m):
-            i = B[w]
-            while i != -1:
-                self._vis[i] = 1
-                for nj in self._E[i]:
-                    c, j = nj >> self.shift, nj & self.mask
-                    tc = w + c
-                    if tc >= self._dist[j]: continue
-                    d = self._dist[j]
-                    if d > _m: d = _m
-                    self._dist[j] = tc
+        pending = 1
+        w = 0
+        b = 0
+        while pending:
+            i = B[b]
+            if i == -1:
+                w += 1
+                b += 1
+                if b == S: b = 0
+                continue
+            ni = nxt[i]
+            B[b] = ni
+            if ni != -1: prv[ni] = -1
+            prv[i] = -1
+            nxt[i] = -1
+            pending -= 1
+            vis[i] = 1
+            for nj in self._E[i]:
+                c, j = nj >> self.shift, nj & self.mask
+                nd = w + c
+                d = dist[j]
+                if nd >= d: continue
+                if d != INF:
+                    ob = slot[j]
                     p = prv[j]
-                    n = nxt[j]
-                    if p != -1: nxt[p] = n
-                    else: B[d] = n
-                    if n != -1: prv[n] = p
-                    else: L[d] = p
-                    l = L[tc]
-                    if l != -1: nxt[l] = j
-                    else: B[tc] = j
-                    prv[j] = l
-                    nxt[j] = -1
-                    self._bf[j] = i
-                    L[tc] = j
-                i = nxt[i]
+                    q = nxt[j]
+                    if p != -1: nxt[p] = q
+                    else: B[ob] = q
+                    if q != -1: prv[q] = p
+                else:
+                    pending += 1
+                dist[j] = nd
+                bf[j] = i
+                nb = b + c
+                if nb >= S: nb -= S
+                slot[j] = nb
+                h = B[nb]
+                prv[j] = -1
+                nxt[j] = h
+                if h != -1: prv[h] = j
+                B[nb] = j
     
     def bfs01(self, start: int) -> None:
         assert 0 <= start < self._n
