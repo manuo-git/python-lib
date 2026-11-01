@@ -3,7 +3,6 @@
 # ---
 # https://github.com/manuo-git/python-lib/blob/main/src/graph.py
 import heapq
-import collections
 MEMORY_CAP: int = 130000
 class Graph:
     shift: int
@@ -113,23 +112,33 @@ class Graph:
     def bfs01(self, start: int) -> None:
         assert 0 <= start < self._n
         self._init_data()
-        self._dist[start] = 0
+        dist = self._dist
+        vis = self._vis
+        E = self._E
+        bf = self._bf
+        shift = self.shift
+        mask = self.mask
+
+        dist[start] = 0
         self._last_start = start
-        q = collections.deque[int]([start])
-        while q:
-            i = q.popleft()
-            if self._vis[i]: continue
-            self._vis[i] = 1
-            for nj in self._E[i]:
-                c, j = nj >> self.shift, nj & self.mask
-                assert 0 <= c <= 1
-                tc = self._dist[i]+c
-                if self._vis[j]: continue
-                if self._dist[j] <= tc: continue
-                self._dist[j] = tc
-                self._bf[j] = i
-                if c == 0: q.appendleft(j)
-                else: q.append(j)
+        cur = [start]
+        nxt = []
+        d = 0
+        while cur:
+            while cur:
+                i = cur.pop()
+                if vis[i] or dist[i] != d: continue
+                vis[i] = 1
+                for nj in E[i]:
+                    c, j = nj >> shift, nj & mask
+                    if vis[j]: continue
+                    if d+c >= dist[j]: continue
+                    dist[j] = d+c
+                    bf[j] = i
+                    if c == 0: cur.append(j)
+                    else: nxt.append(j)
+            cur, nxt = nxt, cur
+            d += 1
 
     def dist(self, goal: int) -> int:
         return self._dist[goal]
