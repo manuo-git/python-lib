@@ -12,6 +12,7 @@ _int = lambda x: int(x)-1
 INF = 1<<60
 Yes, No = "Yes", "No"
 
+# https://qiita.com/navel_tos/items/9195de7041cf2c8b535b
 #mapの返り値をlist(map)で固定
 import internal.static as _internal_static
 def map(f, *args) -> list:
@@ -22,9 +23,9 @@ def map(f, *args) -> list:
     else:
         return [f(*a) for a in zip(*args)]
 
-#int同士の除算結果をPythonの負の無限大丸めに合わせる
 @extend
 class int:
+#int同士の除算結果をPythonの負の無限大丸めに合わせる
     @pure
     @llvm
     def _floordiv_int_int(self: int, other: int) -> int:
@@ -48,6 +49,20 @@ class int:
         if m and ((other ^ m) < 0):
             m += other
         return m
+    
+#int.bit_length, int.bit_countに対応
+    def bit_length(self): 
+        return 64 - abs(self).__ctlz__()
+    def bit_count(self):
+        return abs(self).__ctpop__()
+    
+#int hash値をSplitMix64で変更する
+#Reference: https://prng.di.unimi.it/splitmix64.c
+    def __hash__(self) -> int:
+        z: UInt[64] = UInt[64](self) + UInt[64](0x9e3779b97f4a7c15)
+        z = (z ^ (z >> UInt[64](30))) * UInt[64](0xbf58476d1ce4e5b9)
+        z = (z ^ (z >> UInt[64](27))) * UInt[64](0x94d049bb133111eb)
+        return int(z ^ (z >> UInt[64](31)))
 
 #Int[N](N <= 128)同士の除算結果をPythonの負の無限大丸めに合わせる
 @extend
@@ -67,14 +82,6 @@ class Int:
         if m and ((other ^ m) < Int[N](0)):
             m += other
         return m
-
-#int.bit_length, int.bit_countに対応
-@extend
-class int:
-    def bit_length(self): 
-        return 64 - abs(self).__ctlz__()
-    def bit_count(self):
-        return abs(self).__ctpop__()
 
 #floatの出力桁数を15桁に増やす
 @extend
