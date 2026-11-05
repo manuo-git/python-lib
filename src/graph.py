@@ -62,7 +62,7 @@ class Graph:
                 self._bf[j] = i
                 heapq.heappush(q, tc<<self.shift | j)
     
-    def dials_algorithm(self, start: int, next_func) -> None:
+    def dials_algorithm(self, start: int) -> None:
         n = self._n
         S = self._max_cost+1
         self._init_data()
