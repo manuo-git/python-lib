@@ -53,7 +53,7 @@ class int:
 #int.bit_length, int.bit_countに対応
     @pure
     @llvm
-    def _ctlz64(self) -> int:
+    def _ctlz(self) -> int:
         declare i64 @llvm.ctlz.i64(i64, i1)
         %0 = call i64 @llvm.ctlz.i64(i64 %self, i1 false)
         ret i64 %0
